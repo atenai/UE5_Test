@@ -2,10 +2,11 @@
 
 #pragma once
 
+#include "CppExampleStruct.h"
+#include "CppExampleEnum.h"//‚±‚¢‚Â‚ª–â‘è
+
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-//#include "CppExampleStruct.h"
-//#include "CppExampleEnum.h"
 #include "TestKashiwabara.generated.h"
 
 //UCLASS(BlueprintType)
