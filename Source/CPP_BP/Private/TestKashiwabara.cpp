@@ -22,3 +22,7 @@ void ATestKashiwabara::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+float ATestKashiwabara::MyActorFunc(const float Input)
+{
+	return 10.0f;
+}

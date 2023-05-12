@@ -29,7 +29,7 @@ public:
 	UPROPERTY(BlueprintReadWrite ,EditAnywhere, Category = "UE C++ book")
 	ECppExampleEnum Type;
 
-	//UFUNCTION(BlueprintCallable, Category = "UE C++ book")//こいつがBlueprintCallableの所で謎のエラーを出す
+	UFUNCTION(BlueprintCallable, Category = "UE C++ book")//BlueprintCallableをつけた関数は必ずcppに関数の処理内容を書く！！（じゃないとコンパイルエラーになる）
 	float MyActorFunc(const float Input);
 
 private:
