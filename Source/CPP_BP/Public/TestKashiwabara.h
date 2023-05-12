@@ -9,8 +9,7 @@
 #include "GameFramework/Actor.h"
 #include "TestKashiwabara.generated.h"
 
-//UCLASS(BlueprintType)
-UCLASS()
+UCLASS(BlueprintType)
 class CPP_BP_API ATestKashiwabara : public AActor
 {
 	GENERATED_BODY()
@@ -24,14 +23,14 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 
-		/*UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "UE C++ book")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "UE C++ book")
 	FCppExampleStruct MyStructProp;
 
 	UPROPERTY(BlueprintReadWrite ,EditAnywhere, Category = "UE C++ book")
-	ECppExamepleEnum Type;
+	ECppExampleEnum Type;
 
-	UFUNCTION(BlueprintCallable, Category = "UE C++ book")
-	float MyActorFunc(const float Input);*/
+	//UFUNCTION(BlueprintCallable, Category = "UE C++ book")//Ç±Ç¢Ç¬Ç™BlueprintCallableÇÃèäÇ≈ì‰ÇÃÉGÉâÅ[ÇèoÇ∑
+	float MyActorFunc(const float Input);
 
 private:
 
