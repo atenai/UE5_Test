@@ -26,6 +26,10 @@ void ACPPStaticTest::BeginPlay()
 	// メンバ変数を設定する
 	staticActorB->normalPoint = 200;
 
+	// 静的メンバ関数を呼び出す
+	ACPPStatic::SetPoint(500);
+	staticActorA->SetPoint(600);
+
 	UKismetSystemLibrary::PrintString(this, FString::Printf(TEXT("staticActorA staticPoint : %d, normalPoint : %d"), ACPPStatic::staticPoint, staticActorA->normalPoint), true, true, FColor::Cyan, 10.f, TEXT("None"));
 
 	UKismetSystemLibrary::PrintString(this, FString::Printf(TEXT("staticActorB staticPoint : %d, normalPoint : %d"), staticActorB->staticPoint, staticActorB->normalPoint), true, true, FColor::Red, 10.f, TEXT("None"));

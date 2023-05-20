@@ -18,6 +18,9 @@ protected:
 public:	
 	virtual void Tick(float DeltaTime) override;
 
+	// staticƒƒ“ƒoŠÖ”
+	static void SetPoint(int myPoint);
+
 	// Ã“Iƒƒ“ƒo•Ï”
 	static int staticPoint;
 

@@ -15,3 +15,7 @@ void ACPPStatic::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+void ACPPStatic::SetPoint(int myPoint)
+{
+	staticPoint = myPoint;
+}
