@@ -25,7 +25,7 @@ void AMySomeCPPActor::Tick(float DeltaTime)
 //ÇªÇÃëºÇÃé©çÏä÷êî
 void AMySomeCPPActor::TestPrint()
 {
-	UKismetSystemLibrary::PrintString(this, "TestC++", true, true, FColor::Red, 20.f, TEXT("None"));
+	UKismetSystemLibrary::PrintString(this, "MySomeCPPActor", true, true, FColor::Red, 20.f, TEXT("None"));
 }
 
 int AMySomeCPPActor::StaticSetAddNumber(int number)

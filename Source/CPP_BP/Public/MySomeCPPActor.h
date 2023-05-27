@@ -39,17 +39,18 @@ public:
     //BlueprintCallableは処理のInputとOutputの入口と出口があるノードになる
     //BlueprintPureは値だけを持つノードになる(純粋化)
     //第二引数のCategory = "TestC++"は「 "TestC++"」の部分は自由に名前をつけることができ、その名前のカテゴリーに関数が作られる
-    UFUNCTION(BlueprintCallable, Category = "TestC++")
+    UFUNCTION(BlueprintCallable, Category = "KashiwabaraC++")
         void TestPrint();
 
     //BlueprintCallableは処理のInputとOutputの入口と出口があるノードになる
-    UFUNCTION(BlueprintCallable, Category = "TestC++")
+    UFUNCTION(BlueprintCallable, Category = "KashiwabaraC++")
         static int StaticSetAddNumber(int number);//staticをつけるとどのブループリントからも呼び出せる
 
     //BlueprintPureは値だけを持つノードになる(純粋化)
-    UFUNCTION(BlueprintPure, Category = "TestC++")
+    UFUNCTION(BlueprintPure, Category = "KashiwabaraC++")
         static int StaticGet2023();
 
-    UFUNCTION(BlueprintPure, Category = "TestC++")
+    UFUNCTION(BlueprintPure, Category = "KashiwabaraC++")
         float Get10();
+
 };

@@ -3,6 +3,7 @@
 
 #include "TestKashiwabara.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "MySomeCPPActor.h"
 
 ATestKashiwabara::ATestKashiwabara()
 {
@@ -13,8 +14,7 @@ void ATestKashiwabara::BeginPlay()
 {
 	Super::BeginPlay();
 
-
-	UKismetSystemLibrary::PrintString(this, test, true, true, TextColor, 100);	
+	UKismetSystemLibrary::PrintString(this, test, true, true, TextColor, 100);
 }
 
 void ATestKashiwabara::Tick(float DeltaTime)
