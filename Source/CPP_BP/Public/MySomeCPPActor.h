@@ -53,4 +53,43 @@ public:
     UFUNCTION(BlueprintPure, Category = "KashiwabaraC++")
         float Get10();
 
+	UPROPERTY(EditAnywhere, Category = "Reference|Edit")
+	float NumEditAnywhere;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Reference|Edit")
+	float NumEditDefaultsOnly;
+
+	UPROPERTY(EditInstanceOnly, Category = "Reference|Edit")
+	float NumEditInstanceOnly;
+
+	UPROPERTY(VisibleAnywhere, Category = "Reference|Visible")
+	float NumVisibleAnywhere;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "Reference|Visible")
+	float NumVisibleDefaultsOnly;
+
+	UPROPERTY(VisibleInstanceOnly, Category = "Reference|Visible")
+	float NumVisibleInstanceOnly;
+
+    UPROPERTY(EditAnywhere, meta = (EditCondition = "bEditCondition"), Category = "Reference|Edit")
+	float NumEditCondition;
+
+	UPROPERTY()
+	bool bEditCondition;
+    
+    UPROPERTY(EditAnywhere, AdvancedDisplay, Category = "Reference")
+	float NumAdvancedDisplay;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ReadWrite")
+	float NumBlueprintReadOnly;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ReadWrite")
+	float NumBlueprintReadWrite;
+
+    /* Description String */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Description")
+	float NumDescription;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = "-10.0", ClampMax = "10.0"), Category = "ValueRange")
+	float NumValueRange;
 };
