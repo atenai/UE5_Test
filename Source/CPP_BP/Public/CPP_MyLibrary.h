@@ -14,4 +14,6 @@ class CPP_BP_API UCPP_MyLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	
+	UFUNCTION(BlueprintCallable)
+	static double Func(double In1, double In2);
 };

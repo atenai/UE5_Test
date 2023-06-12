@@ -14,4 +14,7 @@ class CPP_BP_API UMathLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	
+
+	UFUNCTION(BlueprintCallable)
+	static double Add(double A, double B);
 };
