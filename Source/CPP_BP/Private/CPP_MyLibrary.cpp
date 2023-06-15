@@ -20,3 +20,8 @@ void UCPP_MyLibrary::Func2(double In1, double In2, double& Out1, double& Out2)
 	Out1 = In1 + In2;//Out1の出力値
 	Out2 = In1 - In2;//Out2の出力値
 }
+
+void UCPP_MyLibrary::Func3(double In, UPARAM(ref) double& InRef)
+{
+	InRef = InRef + In;
+}
