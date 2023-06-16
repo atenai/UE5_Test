@@ -26,4 +26,7 @@ class CPP_BP_API UCPP_MyLibrary : public UBlueprintFunctionLibrary
 	//参照渡しの記述方法は、引数の型の前に対してUPARAM(ref)をつけて、引数の型の後ろに&を記述し、引数の名前に入力名（参照渡し）を記述する必要がある
 	UFUNCTION(BlueprintCallable)
 	static void Func3(double In, UPARAM(ref) double& InRef);
+
+	UFUNCTION(BlueprintCallable)
+	static void Func4(double In, UPARAM(ref) double& InRef, double& Out);
 };

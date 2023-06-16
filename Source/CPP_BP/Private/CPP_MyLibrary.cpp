@@ -25,3 +25,9 @@ void UCPP_MyLibrary::Func3(double In, UPARAM(ref) double& InRef)
 {
 	InRef = InRef + In;
 }
+
+//QÆ“n‚µ‚Å‚Ì•¡”‚Ìo—Í’l
+void UCPP_MyLibrary::Func4(double In, UPARAM(ref) double& InRef, double& Out)
+{
+
+}
