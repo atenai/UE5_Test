@@ -20,4 +20,7 @@ class CPP_BP_API UMathLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable)
 	static void Divide(int32 A, int32 B, int32& Quotient, int32& Remainder);
+
+	UFUNCTION(BlueprintCallable)
+	static void AddRef(UPARAM(ref) double& A, double B);
 };
