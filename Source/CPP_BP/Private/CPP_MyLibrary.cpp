@@ -21,6 +21,7 @@ void UCPP_MyLibrary::Func2(double In1, double In2, double& Out1, double& Out2)
 	Out2 = In1 - In2;//Out2の出力値
 }
 
+//参照渡しの記述方法は、引数の型の前に対してUPARAM(ref)をつけて、引数の型の後ろに&を記述し、引数の名前に入力名（参照渡し）を記述する必要がある
 void UCPP_MyLibrary::Func3(double In, UPARAM(ref) double& InRef)
 {
 	InRef = InRef + In;
@@ -30,4 +31,11 @@ void UCPP_MyLibrary::Func3(double In, UPARAM(ref) double& InRef)
 void UCPP_MyLibrary::Func4(double In, UPARAM(ref) double& InRef, double& Out)
 {
 
+}
+
+//const参照渡しは引数の型の前にconstをつけて、引数の型の後ろに&を記述し、引数の名前に入力名（参照渡し）を記述する必要がある
+//UPARAM(ref)の記述は不要
+double UCPP_MyLibrary::Func5(double In, const double& InRef)
+{
+	return In + InRef;
 }

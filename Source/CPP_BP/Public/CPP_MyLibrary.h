@@ -27,6 +27,12 @@ class CPP_BP_API UCPP_MyLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable)
 	static void Func3(double In, UPARAM(ref) double& InRef);
 
+	//参照渡しでの複数の出力値
 	UFUNCTION(BlueprintCallable)
 	static void Func4(double In, UPARAM(ref) double& InRef, double& Out);
+
+	//const参照渡しは引数の型の前にconstをつけて、引数の型の後ろに&を記述し、引数の名前に入力名（参照渡し）を記述する必要がある
+	//UPARAM(ref)の記述は不要
+	UFUNCTION(BlueprintCallable)
+	static double Func5(double In, const double& InRef);
 };
