@@ -21,3 +21,11 @@ void UMathLibrary::AddRef(UPARAM(ref) double& A, double B)
 {
 	A = A + B;//A + B ‚ÌŒ‹‰Ê‚ğAiQÆ“n‚µj‚É‘ã“ü
 }
+
+double UMathLibrary::AddCompact(double A, double B)
+{
+	double C;
+
+	C = A + B;
+	return C;
+}

@@ -23,4 +23,7 @@ class CPP_BP_API UMathLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable)
 	static void AddRef(UPARAM(ref) double& A, double B);
+
+	UFUNCTION(BlueprintPure, Category = "Math", meta = (CompactNodeTitle = "+"))
+	static double AddCompact(double A , double B);
 };
