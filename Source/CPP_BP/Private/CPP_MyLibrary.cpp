@@ -39,3 +39,33 @@ double UCPP_MyLibrary::Func5(double In, const double& InRef)
 {
 	return In + InRef;
 }
+
+//複数の演算子
+void UCPP_MyLibrary::Func6(double In1, double In2, double In3, double& Out)
+{
+	Out = (In1 + In2) * 2.0 - In3;
+
+	//たとえば、In1 = 5.0, In2 = 3.0, In3 = 10.0 のとき
+	//Out = (5.0 + 3.0) * 2.0 - 10.0 = 6.0 になる
+}
+
+//条件分岐
+double UCPP_MyLibrary::Func7(bool bCondA, bool bCondB, double Val1, double Val2)
+{
+	double LocalVar;
+
+	if (bCondA && bCondB)//bCondAが真かつbCondBが真の場合、中身が実行される
+	{
+		LocalVar = Val1 + Val2;
+	}
+	else if (0.0 < Val2)//上の条件が偽であり、なおかつVal2が0.0より大きい場合、中身が実行される
+	{
+		LocalVar = Val2;
+	}
+	else//上の条件がいずれも偽である場合に中身が実行される
+	{
+		LocalVar = 0.0;
+	}
+
+	return LocalVar;//if～elseの後の処理は共通で行われる
+}

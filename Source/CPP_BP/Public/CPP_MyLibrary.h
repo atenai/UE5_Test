@@ -35,4 +35,12 @@ class CPP_BP_API UCPP_MyLibrary : public UBlueprintFunctionLibrary
 	//UPARAM(ref)の記述は不要
 	UFUNCTION(BlueprintCallable)
 	static double Func5(double In, const double& InRef);
+
+	//複数の演算子
+	UFUNCTION(BlueprintCallable)
+	static void Func6(double In1, double In2, double In3, double& Out);
+
+	//条件分岐
+	UFUNCTION(BlueprintCallable)
+	static double Func7(bool bCondA, bool bCondB, double Val1, double Val2);
 };
