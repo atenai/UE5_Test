@@ -43,4 +43,8 @@ class CPP_BP_API UCPP_MyLibrary : public UBlueprintFunctionLibrary
 	//ğŒ•ªŠò
 	UFUNCTION(BlueprintCallable)
 	static double Func7(bool bCondA, bool bCondB, double Val1, double Val2);
+
+	//ƒ‹[ƒv
+	UFUNCTION(BlueprintCallable)
+	static int32 Func8(int32 In1, int32 In2);
 };

@@ -69,3 +69,15 @@ double UCPP_MyLibrary::Func7(bool bCondA, bool bCondB, double Val1, double Val2)
 
 	return LocalVar;//if～elseの後の処理は共通で行われる
 }
+
+//ループ
+int32 UCPP_MyLibrary::Func8(int32 In1, int32 In2)
+{
+	for (int32 Index = 0; Index < In1; Index++)
+	{
+		//Indexの初期値を0とし、Index < In1が真である限りループする。
+		//ループ毎に、Indexを1ずつ加算する。
+		In2 += Index;//ループ毎に、この処理が行われる。
+	}
+	return In2;
+}
