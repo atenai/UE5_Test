@@ -33,4 +33,8 @@ class CPP_BP_API UMathLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Math")
 	static int32 Accumulate(int32 N);
+
+	//UFUNCTION(BlueprintCallable, Category = "Math", meta = (CompactNodeTitle = "MinMax"))
+	UFUNCTION(BlueprintCallable, Category = "Math")
+	static void MinMax(double A, double B, double C, double& Min, double& Max);
 };
