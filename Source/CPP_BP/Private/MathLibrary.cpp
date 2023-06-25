@@ -29,3 +29,31 @@ double UMathLibrary::AddCompact(double A, double B)
 	C = A + B;
 	return C;
 }
+
+double UMathLibrary::Clamp(double Value, double Min, double Max)
+{
+	if (Value < Min)
+	{
+		return Min;
+	}
+	else if (Max < Value)
+	{
+		return Max;
+	}
+	else 
+	{
+		return Value;
+	}
+}
+
+int32 UMathLibrary::Accumulate(int32 N)
+{
+	int32 Out = 0;
+
+	for(int32 i = 1; i <= N; i++)
+	{
+		Out = Out + i;
+	}
+
+	return Out;
+}

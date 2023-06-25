@@ -81,3 +81,9 @@ int32 UCPP_MyLibrary::Func8(int32 In1, int32 In2)
 	}
 	return In2;
 }
+
+//アンリアルエンジンのライブラリ関数の呼び出し
+void UCPP_MyLibrary::Func9()
+{
+	UKismetMathLibrary::FMin(10.0, 5.0);
+}

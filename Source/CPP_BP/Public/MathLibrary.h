@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "Kismet/KismetMathLibrary.h"//’Ç‰Á
 #include "MathLibrary.generated.h"
 
 /**
@@ -26,4 +27,10 @@ class CPP_BP_API UMathLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintPure, Category = "Math", meta = (CompactNodeTitle = "+"))
 	static double AddCompact(double A , double B);
+
+	UFUNCTION(BlueprintCallable, Category = "Math")
+	static double Clamp(double Value, double Min, double Max);
+
+	UFUNCTION(BlueprintCallable, Category = "Math")
+	static int32 Accumulate(int32 N);
 };

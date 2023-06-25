@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "Kismet/KismetMathLibrary.h"//追加
 #include "CPP_MyLibrary.generated.h"
 
 /**
@@ -47,4 +48,8 @@ class CPP_BP_API UCPP_MyLibrary : public UBlueprintFunctionLibrary
 	//ループ
 	UFUNCTION(BlueprintCallable)
 	static int32 Func8(int32 In1, int32 In2);
+
+	//アンリアルエンジンのライブラリ関数の呼び出し
+	UFUNCTION(BlueprintCallable)
+	static void Func9();
 };
