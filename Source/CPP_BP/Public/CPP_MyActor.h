@@ -26,4 +26,7 @@ public:
 	//ƒƒ“ƒo•Ï”‚Ì’è‹`
 	UPROPERTY(EditAnywhere)
 	double Var = 1.0f;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category = "Param",meta = (ClampMin = 0.0f, ClampMax = 1000.0f ))
+	double testUPROPERTY = 1.0f;
 };

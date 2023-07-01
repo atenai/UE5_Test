@@ -23,4 +23,24 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere)
+	double Weight = 10.0;
+
+	UPROPERTY(EditAnywhere)
+	bool bFlyable = true; 
+
+	UPROPERTY(EditAnywhere)
+	int32 VitalityMax = 100;
+
+	UPROPERTY(EditAnywhere)
+	int32 Vitality = 100;
+
+	UPROPERTY(EditAnywhere)
+	bool bPoisoned = false;
+
+	UPROPERTY(EditAnywhere)
+	int32 BirdID = -1;
+
+	UPROPERTY(EditAnywhere)
+	int32 InstanceID = -1;
 };
