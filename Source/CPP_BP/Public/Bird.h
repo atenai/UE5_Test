@@ -26,21 +26,21 @@ public:
 	UPROPERTY(EditAnywhere)
 	double Weight = 10.0;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	bool bFlyable = true; 
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditInstanceOnly)
 	int32 VitalityMax = 100;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	int32 Vitality = 100;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	bool bPoisoned = false;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleDefaultsOnly)
 	int32 BirdID = -1;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleInstanceOnly)
 	int32 InstanceID = -1;
 };
