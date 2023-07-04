@@ -29,4 +29,7 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category = "Param",meta = (ClampMin = 0.0f, ClampMax = 1000.0f ))
 	double testUPROPERTY = 1.0f;
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Function"))
+	void Func(double In1, double In2, double& Out1, double& Out2);
 };

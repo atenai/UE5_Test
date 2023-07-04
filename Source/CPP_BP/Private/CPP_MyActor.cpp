@@ -25,3 +25,11 @@ void ACPP_MyActor::Tick(float DeltaTime)
 
 }
 
+void ACPP_MyActor::Func(double In1, double In2, double& Out1, double& Out2)
+{
+	double LocalVar;
+
+	LocalVar = In1 + In2;
+	Out1 = LocalVar / 2.0f;
+	Out2 = LocalVar * 2.0f;
+}
