@@ -43,4 +43,13 @@ public:
 
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "Internal")
 	int32 InstanceID = -1;
+
+	UFUNCTION(BlueprintCallable)
+	void Damage(int32 Amount);
+
+	UFUNCTION(BlueprintCallable)
+	void Cure(int32 Amount);
+
+	UFUNCTION(BlueprintPure)
+	int32 GetVitality();
 };

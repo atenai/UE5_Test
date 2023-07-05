@@ -25,3 +25,27 @@ void ABird::Tick(float DeltaTime)
 
 }
 
+void ABird::Damage(int32 Amount)
+{
+	Vitality = Vitality - Amount;
+
+	if (Vitality < 0)
+	{
+		Vitality = 0;
+	}
+}
+
+void ABird::Cure(int32 Amount)
+{
+	Vitality = Vitality + Amount;
+
+	if (VitalityMax < Vitality)
+	{
+		Vitality = VitalityMax;
+	}
+}
+
+int32 ABird::GetVitality()
+{
+	return Vitality;
+}
