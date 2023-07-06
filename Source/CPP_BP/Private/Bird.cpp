@@ -45,7 +45,7 @@ void ABird::Cure(int32 Amount)
 	}
 }
 
-int32 ABird::GetVitality()
+int32 ABird::GetVitality() const
 {
 	return Vitality;
 }

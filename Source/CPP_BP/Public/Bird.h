@@ -51,5 +51,5 @@ public:
 	void Cure(int32 Amount);
 
 	UFUNCTION(BlueprintPure)
-	int32 GetVitality();
+	int32 GetVitality() const;
 };
