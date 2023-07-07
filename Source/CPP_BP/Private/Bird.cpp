@@ -49,3 +49,18 @@ int32 ABird::GetVitality() const
 {
 	return Vitality;
 }
+
+double ABird::GetWalkingSpeed() const
+{
+	return UKismetMathLibrary::FMin(10.0 - 0.01 * Weight, 5.0);
+}
+
+double ABird::GetFlightSpeed() const
+{
+	if (!bFlyable)
+	{
+		return 0.0;
+	}
+
+	return UKismetMathLibrary::FMin(50.0 - 0.05 * Weight, 25.0);
+}

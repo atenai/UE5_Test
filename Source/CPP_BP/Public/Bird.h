@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Kismet/KismetMathLibrary.h"//’Ç‰Á
 #include "Bird.generated.h"
 
 UCLASS()
@@ -52,4 +53,10 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	int32 GetVitality() const;
+
+	UFUNCTION(BlueprintPure)
+	double GetWalkingSpeed() const;
+
+	UFUNCTION(BlueprintPure)
+	double GetFlightSpeed() const;
 };
