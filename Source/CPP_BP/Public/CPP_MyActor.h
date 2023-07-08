@@ -39,4 +39,17 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Func2(double In1, bool isIn2);
 
+public:
+	UPROPERTY(EditAnywhere)
+	double PublicVar;//publicのメンバ変数
+
+	UFUNCTION(BlueprintCallable)
+	int32 PublicFunc();//publicのメンバ関数
+
+protected:
+	UPROPERTY(EditAnywhere)
+	int32 ProtectedVar;//protectedのメンバ変数
+
+	UFUNCTION(BlueprintCallable)
+	void ProtectedFunc();//protectedのメンバ関数
 };

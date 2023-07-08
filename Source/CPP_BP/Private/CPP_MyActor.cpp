@@ -40,3 +40,13 @@ void ACPP_MyActor::Func2(double In1, bool isIn2)
 {
 
 }
+
+int32 ACPP_MyActor::PublicFunc()
+{
+	return 1;
+}
+
+void ACPP_MyActor::ProtectedFunc()
+{
+
+}
