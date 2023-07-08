@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Bird.h"
+#include "CPP_MyLibrary.h"
+#include "Kismet/KismetMathLibrary.h"//’Ç‰Á
 #include "CPP_MyActor.generated.h"
 
 UCLASS()
@@ -32,4 +35,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Function"))
 	void Func(double In1, double In2, double& Out1, double& Out2);
+
+	UFUNCTION(BlueprintCallable)
+	void Func2(double In1, bool isIn2);
+
 };

@@ -25,6 +25,11 @@ void ABird::Tick(float DeltaTime)
 
 }
 
+void ABird::FuncTest()
+{
+
+}
+
 void ABird::Damage(int32 Amount)
 {
 	Vitality = Vitality - Amount;

@@ -87,3 +87,8 @@ void UCPP_MyLibrary::Func9()
 {
 	UKismetMathLibrary::FMin(10.0, 5.0);
 }
+
+void UCPP_MyLibrary::Func10()
+{
+
+}

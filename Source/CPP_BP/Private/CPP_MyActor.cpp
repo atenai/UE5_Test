@@ -22,7 +22,9 @@ void ACPP_MyActor::BeginPlay()
 void ACPP_MyActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	Func2(1.0, false);
+	this->Func2(1.0, false);
+	UCPP_MyLibrary::Func10();
 }
 
 void ACPP_MyActor::Func(double In1, double In2, double& Out1, double& Out2)
@@ -32,4 +34,9 @@ void ACPP_MyActor::Func(double In1, double In2, double& Out1, double& Out2)
 	LocalVar = In1 + In2;
 	Out1 = LocalVar / 2.0f;
 	Out2 = LocalVar * 2.0f;
+}
+
+void ACPP_MyActor::Func2(double In1, bool isIn2)
+{
+
 }

@@ -52,4 +52,9 @@ class CPP_BP_API UCPP_MyLibrary : public UBlueprintFunctionLibrary
 	//アンリアルエンジンのライブラリ関数の呼び出し
 	UFUNCTION(BlueprintCallable)
 	static void Func9();
+
+public://他のソースコードから呼び出す場合は必ずpublic:の下に書く必要がある
+
+	UFUNCTION(BlueprintCallable)
+	static void Func10();
 };
