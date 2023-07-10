@@ -25,6 +25,8 @@ void ACPP_MyActor::Tick(float DeltaTime)
 	Func2(1.0, false);
 	this->Func2(1.0, false);
 	UCPP_MyLibrary::Func10();
+
+	MemberVar += DeltaTime;
 }
 
 void ACPP_MyActor::Func(double In1, double In2, double& Out1, double& Out2)

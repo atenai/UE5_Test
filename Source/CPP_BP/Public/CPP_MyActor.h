@@ -39,6 +39,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Func2(double In1, bool isIn2);
 
+	double MemberVar = 0.0f;
+
 public:
 	UPROPERTY(EditAnywhere)
 	double PublicVar;//public‚Ìƒƒ“ƒo•Ï”
