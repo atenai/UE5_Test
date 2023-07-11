@@ -16,6 +16,8 @@ void ABird::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	Vitality = VitalityMax;
+	InstanceID = UKismetMathLibrary::RandomInteger(100000);
 }
 
 // Called every frame
@@ -23,6 +25,14 @@ void ABird::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (bPoisoned == true)
+	{
+		Damage(1);
+	}
+	else
+	{
+		Cure(1);
+	}
 }
 
 void ABird::FuncTest()
