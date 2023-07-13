@@ -26,6 +26,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void OnConstruction(const FTransform& Transform) override;
+
 	//ƒƒ“ƒo•Ï”‚Ì’è‹`
 	UPROPERTY(EditAnywhere)
 	double Var = 1.0f;

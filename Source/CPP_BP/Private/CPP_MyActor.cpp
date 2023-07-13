@@ -29,6 +29,13 @@ void ACPP_MyActor::Tick(float DeltaTime)
 	MemberVar += DeltaTime;
 }
 
+void ACPP_MyActor::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
+
+	MemberVar = 0.0f;
+}
+
 void ACPP_MyActor::Func(double In1, double In2, double& Out1, double& Out2)
 {
 	double LocalVar;
