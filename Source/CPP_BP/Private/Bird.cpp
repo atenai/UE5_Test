@@ -35,6 +35,20 @@ void ABird::Tick(float DeltaTime)
 	}
 }
 
+void ABird::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
+	
+	if (bFlyable)
+	{
+		BirdID = 0;
+	}
+	else 
+	{
+		BirdID = 1;
+	}
+}
+
 void ABird::FuncTest()
 {
 
