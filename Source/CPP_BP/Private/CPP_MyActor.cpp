@@ -6,9 +6,13 @@
 // Sets default values
 ACPP_MyActor::ACPP_MyActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	//親クラスである AActor クラスのメンバ変数に対し、デフォルト値を設定しています。Tick の動 作を制御するための変数ですが、そのまま残しておいておいてください。
 	PrimaryActorTick.bCanEverTick = true;
 
+	ParentMemberVar = 100.0f;
+
+	MemberVar1 = 0.0f; 
+	MemberVar2 = false;
 }
 
 // Called when the game starts or when spawned

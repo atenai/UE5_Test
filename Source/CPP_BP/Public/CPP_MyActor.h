@@ -42,6 +42,9 @@ public:
 	void Func2(double In1, bool isIn2);
 
 	double MemberVar = 0.0f;
+	double ParentMemberVar = 0.0f;
+	double MemberVar1 = 0.0f;
+	bool MemberVar2 = true;
 
 public:
 	UPROPERTY(EditAnywhere)
