@@ -7,6 +7,8 @@
 #include "Bird.h"
 #include "CPP_MyLibrary.h"
 #include "Kismet/KismetMathLibrary.h"//追加
+#include "Components/ArrowComponent.h" // 追加
+#include "Components/PointLightComponent.h" // 追加
 #include "CPP_MyActor.generated.h"
 
 UCLASS()
@@ -27,6 +29,14 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void OnConstruction(const FTransform& Transform) override;
+
+	// オブジェクトを配置する基礎部分であるデフォルトシーンルート
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<USceneComponent> DefaultSceneRoot;
+
+	// UE5 の場合（推奨） 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly) 
+	TObjectPtr<UStaticMeshComponent> Comp;
 
 	//メンバ変数の定義
 	UPROPERTY(EditAnywhere)

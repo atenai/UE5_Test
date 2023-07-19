@@ -13,6 +13,22 @@ ACPP_MyActor::ACPP_MyActor()
 
 	MemberVar1 = 0.0f; 
 	MemberVar2 = false;
+
+	// SceneComponent‚ğì¬‚·‚é
+	DefaultSceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
+
+	// SceneComponent‚ğRootComponent‚Éİ’è‚·‚é
+	RootComponent = DefaultSceneRoot;
+
+	// StaticMeshComponent‚ğì¬‚·‚é
+	Comp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
+
+	// StaticMesh‚ğLaod‚µ‚ÄStaticMeshComponent‚ÌStaticMesh‚Éİ’è‚·‚é
+	UStaticMesh* Mesh = LoadObject<UStaticMesh>(NULL, TEXT("/Game/Meshes/SM_SampleCube"), NULL, LOAD_None, NULL);
+	Comp->SetStaticMesh(Mesh);
+
+	// StaticMeshComponent‚ğRootComponent‚ÉAttach‚·‚é
+	Comp->SetupAttachment(RootComponent);//(Component‚Ì•Ï”–¼)->SetupAttachment( (Attach‚µ‚½‚¢e‚Æ‚È‚éComponent‚Ì•Ï”–¼)@);
 }
 
 // Called when the game starts or when spawned
