@@ -11,6 +11,10 @@ ABird::ABird()
 
 	Weight = 50.0; 
 	bFlyable = false;
+
+	VisualField = CreateDefaultSubobject<UBoxComponent>(TEXT("VisualField")); 
+	RootComponent = VisualField;
+
 }
 
 // Called when the game starts or when spawned

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Kismet/KismetMathLibrary.h"//’Ç‰Á
+#include "Components/BoxComponent.h"
 #include "Bird.generated.h"
 
 UCLASS()
@@ -25,6 +26,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void OnConstruction(const FTransform& Transform) override;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly) 
+	TObjectPtr<class UBoxComponent> VisualField;
 
 	UFUNCTION(BlueprintCallable)
 	void FuncTest();
