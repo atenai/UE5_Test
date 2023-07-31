@@ -24,5 +24,16 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	double FuelMax = 60.0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	double FuelRest;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bEnabled = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	double Power = 100.0;
 		
 };
