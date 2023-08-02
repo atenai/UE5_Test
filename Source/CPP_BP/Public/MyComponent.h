@@ -25,4 +25,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	double Var = 1.0;
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Function")) 
+	void Func(double In1, double In2, double& Out1, double& Out2);
 };
