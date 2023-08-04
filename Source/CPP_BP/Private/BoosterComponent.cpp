@@ -32,3 +32,12 @@ void UBoosterComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	// ...
 }
 
+double UBoosterComponent::GetVelocity() const
+{
+	if (bEnabled == true && 0.0 < FuelRest)
+	{
+		return Power;
+	}
+
+	return 0.0;
+}

@@ -36,4 +36,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	double Power = 100.0;
 		
+	UFUNCTION(BlueprintPure)
+	double GetVelocity() const;
 };
