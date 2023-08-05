@@ -28,4 +28,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Function")) 
 	void Func(double In1, double In2, double& Out1, double& Out2);
+
+	double MemberVar;
 };

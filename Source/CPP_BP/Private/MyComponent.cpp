@@ -19,8 +19,7 @@ void UMyComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	MemberVar = 1.0;
 }
 
 
