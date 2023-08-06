@@ -19,7 +19,7 @@ void UBoosterComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
+	FuelRest = 50.0;
 	
 }
 
@@ -29,7 +29,15 @@ void UBoosterComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if (bEnabled == true)
+	{
+		FuelRest = FuelRest - DeltaTime;
+
+		if (FuelRest < 0.0)
+		{
+			FuelRest = 0.0;
+		}
+	}
 }
 
 double UBoosterComponent::GetVelocity() const
