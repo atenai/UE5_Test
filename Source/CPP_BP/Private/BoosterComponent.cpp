@@ -19,7 +19,7 @@ void UBoosterComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FuelRest = 50.0;
+	FuelRest = 20.0;
 	
 }
 
