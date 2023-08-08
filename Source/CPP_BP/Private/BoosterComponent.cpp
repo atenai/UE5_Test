@@ -10,7 +10,8 @@ UBoosterComponent::UBoosterComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+	FuelMax = 100.0;
+	bEnabled = true;
 }
 
 
