@@ -7,7 +7,7 @@
 #include "MyComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(TestGroup), HideCategories = (Param),meta=(BlueprintSpawnableComponent) )
 class CPP_BP_API UMyComponent : public UActorComponent
 {
 	GENERATED_BODY()
