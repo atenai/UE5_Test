@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Kismet/KismetMathLibrary.h"//’Ç‰Á
 #include "Components/BoxComponent.h"
+#include "BoosterComponent.h"
 #include "Bird.generated.h"
 
 UCLASS()
@@ -29,6 +30,10 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly) 
 	TObjectPtr<class UBoxComponent> VisualField;
+
+	
+	UPROPERTY(VisibleDefaultsOnly,BlueprintReadOnly)
+	TObjectPtr<class UBoosterComponent> FlightBooster;
 
 	UFUNCTION(BlueprintCallable)
 	void FuncTest();

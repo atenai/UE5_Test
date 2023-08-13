@@ -15,6 +15,7 @@ ABird::ABird()
 	VisualField = CreateDefaultSubobject<UBoxComponent>(TEXT("VisualField")); 
 	RootComponent = VisualField;
 
+	FlightBooster = CreateDefaultSubobject<UBoosterComponent>(TEXT("FlightBooster"));
 }
 
 // Called when the game starts or when spawned
@@ -97,5 +98,5 @@ double ABird::GetFlightSpeed() const
 		return 0.0;
 	}
 
-	return UKismetMathLibrary::FMin(50.0 - 0.05 * Weight, 25.0);
+	return UKismetMathLibrary::FMin(50.0 - 0.05 * Weight, 25.0) + FlightBooster->GetVelocity();
 }

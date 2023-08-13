@@ -7,7 +7,7 @@
 #include "BoosterComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(Equipment), meta=(BlueprintSpawnableComponent) )
 class CPP_BP_API UBoosterComponent : public UActorComponent
 {
 	GENERATED_BODY()
