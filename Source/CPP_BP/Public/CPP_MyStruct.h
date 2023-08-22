@@ -10,4 +10,6 @@ struct FCPP_MyStruct
 {
 	GENERATED_BODY()
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = 0.0f, ClampMax = 10.0f)) 
+	double Var = 1.0f;
 };
