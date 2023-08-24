@@ -10,5 +10,13 @@ struct FReward
 {
 	GENERATED_BODY()
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	int32 Exp = 50;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	int32 Gold = 100;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bDropItem = false;
 };
 
