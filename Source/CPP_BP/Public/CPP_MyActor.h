@@ -4,11 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Bird.h"
-#include "CPP_MyLibrary.h"
+#include "Bird.h"//’Ç‰Á
+#include "CPP_MyLibrary.h"//’Ç‰Á
 #include "Kismet/KismetMathLibrary.h"//’Ç‰Á
-#include "Components/ArrowComponent.h" // ’Ç‰Á
-#include "Components/PointLightComponent.h" // ’Ç‰Á
+#include "Kismet/KismetSystemLibrary.h"//’Ç‰Á
+#include "Components/ArrowComponent.h"//’Ç‰Á
+#include "Components/PointLightComponent.h"//’Ç‰Á
+#include "CPP_MyStruct.h"//’Ç‰Á
 #include "CPP_MyActor.generated.h"
 
 UCLASS()
@@ -55,6 +57,9 @@ public:
 	double ParentMemberVar = 0.0f;
 	double MemberVar1 = 0.0f;
 	bool MemberVar2 = true;
+
+	UFUNCTION(BlueprintCallable)
+	void Func3();
 
 public:
 	UPROPERTY(EditAnywhere)

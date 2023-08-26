@@ -35,7 +35,8 @@ ACPP_MyActor::ACPP_MyActor()
 void ACPP_MyActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	Func3();
 }
 
 // Called every frame
@@ -78,4 +79,35 @@ int32 ACPP_MyActor::PublicFunc()
 void ACPP_MyActor::ProtectedFunc()
 {
 
+}
+
+void ACPP_MyActor::Func3()
+{
+	FCPP_MyStruct strVar = { 5, true, 10.0f };
+
+	int32 ResultVar1 = strVar.Var1;
+	FString StrResultVar1 = FString::Printf(TEXT("%d"), ResultVar1);
+	UKismetSystemLibrary::PrintString(this, StrResultVar1, true, true, FColor::Green, 20.f, TEXT("None"));
+
+	if (strVar.Var2 == true)
+	{
+		float ResultVar3 = strVar.Var3;
+		FString StrResultVar3 = FString::Printf(TEXT("%f"), ResultVar3);
+		UKismetSystemLibrary::PrintString(this, StrResultVar3, true, true, FColor::Yellow, 20.f, TEXT("None"));
+	}
+
+	FCPP_MyStruct strVar2 = { 3, false, 3.0f };
+
+	strVar = strVar2;
+
+	int32 ResultVar4 = strVar.Var1;
+	FString StrResultVar4 = FString::Printf(TEXT("%d"), ResultVar4);
+	UKismetSystemLibrary::PrintString(this, StrResultVar4, true, true, FColor::Blue, 20.f, TEXT("None"));
+
+	if (strVar.Var2 == true)
+	{
+		float ResultVar5 = strVar.Var3;
+		FString StrResultVar5 = FString::Printf(TEXT("%f"), ResultVar5);
+		UKismetSystemLibrary::PrintString(this, StrResultVar5, true, true, FColor::Magenta, 20.f, TEXT("None"));
+	}
 }
