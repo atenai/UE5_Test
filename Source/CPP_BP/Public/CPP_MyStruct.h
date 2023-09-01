@@ -18,4 +18,15 @@ struct FCPP_MyStruct
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ClampMin = 0.0f, ClampMax = 10.0f)) 
 	double Var3 = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) 
+	double MemVar1 = 10.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) 
+	double MemVar2 = 20.0f;
+
+	void Func1(double In1);
+	static double Func2(double In1, double In2);
+
 };
+

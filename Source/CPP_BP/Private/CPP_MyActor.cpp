@@ -111,3 +111,14 @@ void ACPP_MyActor::Func3()
 		UKismetSystemLibrary::PrintString(this, StrResultVar5, true, true, FColor::Magenta, 20.f, TEXT("None"));
 	}
 }
+
+void FCPP_MyStruct::Func1(double In1)
+{
+	MemVar2 = MemVar1 + In1;
+}
+
+double FCPP_MyStruct::Func2(double In1, double In2)
+{
+	double LocalVar = In1 + In2;
+	return LocalVar;
+}

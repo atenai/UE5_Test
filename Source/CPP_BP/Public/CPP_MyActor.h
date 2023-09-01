@@ -57,6 +57,8 @@ public:
 	double ParentMemberVar = 0.0f;
 	double MemberVar1 = 0.0f;
 	bool MemberVar2 = true;
+	double MemVar1 = 10.0f;
+	double MemVar2 = 20.0f;
 
 	UFUNCTION(BlueprintCallable)
 	void Func3();
