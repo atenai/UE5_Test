@@ -110,6 +110,12 @@ void ACPP_MyActor::Func3()
 		FString StrResultVar5 = FString::Printf(TEXT("%f"), ResultVar5);
 		UKismetSystemLibrary::PrintString(this, StrResultVar5, true, true, FColor::Magenta, 20.f, TEXT("None"));
 	}
+
+	strVar.Func1(3);
+
+	double resultVar6 = strVar.Func2(30.0f, 30.0f);
+	FString StrResultVar6 = FString::Printf(TEXT("%f"), resultVar6);
+	UKismetSystemLibrary::PrintString(this, StrResultVar6, true, true, FColor::Red, 20.f, TEXT("None"));
 }
 
 void FCPP_MyStruct::Func1(double In1)
