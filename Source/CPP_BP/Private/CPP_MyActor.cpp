@@ -37,6 +37,8 @@ void ACPP_MyActor::BeginPlay()
 	Super::BeginPlay();
 
 	Func3();
+
+	Func4();
 }
 
 // Called every frame
@@ -127,4 +129,21 @@ double FCPP_MyStruct::Func2(double In1, double In2)
 {
 	double LocalVar = In1 + In2;
 	return LocalVar;
+}
+
+void ACPP_MyActor::Func4()
+{
+	int testFive = 5;
+	int testTenThree = 13;
+
+	int testResult = testFive + testTenThree;
+
+	int resultVarTest = testResult;
+	FString strResultVarTest = FString::Printf(TEXT("%d"), resultVarTest);
+	UKismetSystemLibrary::PrintString(this, strResultVarTest, true, true, FColor::Purple, 20.0f, TEXT("None"));
+}
+
+void ACPP_MyActor::Func5()
+{
+
 }

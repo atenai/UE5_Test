@@ -63,6 +63,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Func3();
 
+	void Func4();
+
+	void Func5();
+
 public:
 	UPROPERTY(EditAnywhere)
 	double PublicVar;//public‚Ìƒƒ“ƒo•Ï”

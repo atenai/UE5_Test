@@ -8,5 +8,5 @@
 UENUM(BlueprintType) 
 enum class ECPP_MyEnum : uint8 
 {
-	Add       UMETA(DisplayName = "Addition"),
+	E_Test = 0 UMETA(DisplayName = "Test"),
 };
