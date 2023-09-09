@@ -145,5 +145,5 @@ void ACPP_MyActor::Func4()
 
 void ACPP_MyActor::Func5()
 {
-
+	ECPP_MyEnum E = ECPP_MyEnum::E_Test;
 }

@@ -11,6 +11,7 @@
 #include "Components/ArrowComponent.h"//’Ç‰Á
 #include "Components/PointLightComponent.h"//’Ç‰Á
 #include "CPP_MyStruct.h"//’Ç‰Á
+#include "CPP_MyEnum.h"
 #include "CPP_MyActor.generated.h"
 
 UCLASS()
