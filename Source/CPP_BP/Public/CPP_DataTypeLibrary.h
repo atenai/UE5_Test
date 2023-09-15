@@ -16,4 +16,7 @@ class CPP_BP_API UCPP_DataTypeLibrary : public UBlueprintFunctionLibrary
 	
 	UFUNCTION(BlueprintCallable)
 	static void ComponentWiseSquared(FVector In, FVector& Out);
+
+	UFUNCTION(BlueprintCallable)
+	static void AddRotationAngle(FRotator In, double X, double Y, double Z, FRotator& Out);
 };
