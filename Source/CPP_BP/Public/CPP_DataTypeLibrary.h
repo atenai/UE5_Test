@@ -19,4 +19,10 @@ class CPP_BP_API UCPP_DataTypeLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable)
 	static void AddRotationAngle(FRotator In, double X, double Y, double Z, FRotator& Out);
+
+	UFUNCTION(BlueprintCallable)
+	static void MakeDifference(const FTransform& In1, const FTransform& In2, FTransform& Out);
+
+	UFUNCTION(BlueprintCallable)
+	static void RepeatString(const FString& StringToRepeat, int32 RepeatCount, FString& Out);
 };
