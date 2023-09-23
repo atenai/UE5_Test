@@ -25,4 +25,7 @@ class CPP_BP_API UCPP_DataTypeLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable)
 	static void RepeatString(const FString& StringToRepeat, int32 RepeatCount, FString& Out);
+
+	UFUNCTION(BlueprintCallable)
+	static int32 Sum(const TArray<int32>& Data);
 };

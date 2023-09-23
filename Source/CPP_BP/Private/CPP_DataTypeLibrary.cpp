@@ -31,3 +31,15 @@ void UCPP_DataTypeLibrary::RepeatString(const FString& StringToRepeat, int32 Rep
 		Out += StringToRepeat;
 	}
 }
+
+int32 UCPP_DataTypeLibrary::Sum(const TArray<int32>& Data)
+{
+	int32 Value = 0;
+
+	for (int32 D : Data)
+	{
+		Value += D;
+	}
+
+	return Value;
+}
