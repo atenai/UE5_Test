@@ -43,3 +43,11 @@ int32 UCPP_DataTypeLibrary::Sum(const TArray<int32>& Data)
 
 	return Value;
 }
+
+void UCPP_DataTypeLibrary::MakeUnique(const TArray<FString>& In, TArray<FString>& Out)
+{
+	Out.Empty();
+
+	TSet<FString> Unique(In);
+	Out = Unique.Array();
+}

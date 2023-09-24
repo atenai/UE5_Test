@@ -28,4 +28,7 @@ class CPP_BP_API UCPP_DataTypeLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable)
 	static int32 Sum(const TArray<int32>& Data);
+
+	UFUNCTION(BlueprintCallable)
+	static void MakeUnique(const TArray<FString>& In, TArray<FString>& Out);
 };
