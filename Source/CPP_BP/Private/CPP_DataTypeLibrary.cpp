@@ -51,3 +51,18 @@ void UCPP_DataTypeLibrary::MakeUnique(const TArray<FString>& In, TArray<FString>
 	TSet<FString> Unique(In);
 	Out = Unique.Array();
 }
+
+void UCPP_DataTypeLibrary::MakeSquared(const TArray<int32>& Data, TMap<int32, int32>& Out)
+{
+	Out.Empty();
+
+	for (int32 D : Data)
+	{
+		Out.Add(D, D * D);
+	}
+}
+
+//void UCPP_DataTypeLibrary::DistanceFromActor(const AActor* InActor, FVector Location, FVector& Distance)
+//{
+//
+//}

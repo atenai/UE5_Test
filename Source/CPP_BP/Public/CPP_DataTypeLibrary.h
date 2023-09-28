@@ -31,4 +31,10 @@ class CPP_BP_API UCPP_DataTypeLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable)
 	static void MakeUnique(const TArray<FString>& In, TArray<FString>& Out);
+
+	UFUNCTION(BlueprintCallable)
+	static void MakeSquared(const TArray<int32>& Data, TMap<int32, int32>& Out);
+
+	//UFUNCTION(BlueprintCallable)
+	//static void DistanceFromActor(const AActor* InActor, FVector Location, FVector& Distance);
 };
