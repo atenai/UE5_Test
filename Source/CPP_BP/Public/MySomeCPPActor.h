@@ -22,7 +22,6 @@ protected:
 private:
     //変数
 
-    float num10 = 10.0f;
 
 
 public:	
@@ -40,18 +39,21 @@ public:
     //BlueprintPureは値だけを持つノードになる(純粋化)
     //第二引数のCategory = "TestC++"は「 "TestC++"」の部分は自由に名前をつけることができ、その名前のカテゴリーに関数が作られる
     UFUNCTION(BlueprintCallable, Category = "KashiwabaraC++")
-        void TestPrint();
+    void TestPrint(int testNumber);
 
     //BlueprintCallableは処理のInputとOutputの入口と出口があるノードになる
     UFUNCTION(BlueprintCallable, Category = "KashiwabaraC++")
-        static int StaticSetAddNumber(int number);//staticをつけるとどのブループリントからも呼び出せる
+    static int StaticSetAddNumber(int number);//staticをつけるとどのブループリントからも呼び出せる
 
     //BlueprintPureは値だけを持つノードになる(純粋化)
     UFUNCTION(BlueprintPure, Category = "KashiwabaraC++")
-        static int StaticGet2023();
+    static int StaticGet2023();
 
     UFUNCTION(BlueprintPure, Category = "KashiwabaraC++")
-        float Get10();
+    float Get10();
+
+	UPROPERTY(EditAnywhere)
+    float num10 = 10.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Reference|Edit")
 	float NumEditAnywhere;

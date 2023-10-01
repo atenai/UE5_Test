@@ -23,9 +23,10 @@ void AMySomeCPPActor::Tick(float DeltaTime)
 }
 
 //ÇªÇÃëºÇÃé©çÏä÷êî
-void AMySomeCPPActor::TestPrint()
+void AMySomeCPPActor::TestPrint(int testNumber)
 {
-	UKismetSystemLibrary::PrintString(this, "MySomeCPPActor", true, true, FColor::Red, 20.f, TEXT("None"));
+	FString stringNumber = FString::FromInt(testNumber);
+	UKismetSystemLibrary::PrintString(this, "MySomeCPPActor : " + stringNumber, true, true, FColor::Red, 20.f, TEXT("None"));
 }
 
 int AMySomeCPPActor::StaticSetAddNumber(int number)

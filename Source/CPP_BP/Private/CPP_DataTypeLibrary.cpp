@@ -62,7 +62,10 @@ void UCPP_DataTypeLibrary::MakeSquared(const TArray<int32>& Data, TMap<int32, in
 	}
 }
 
-//void UCPP_DataTypeLibrary::DistanceFromActor(const AActor* InActor, FVector Location, FVector& Distance)
-//{
-//
-//}
+void UCPP_DataTypeLibrary::DistanceFromActor(const AActor* InActor, FVector Location, FVector& Distance)
+{
+	if (InActor != nullptr) //ポインタがnullではないか？の確認
+	{
+		Distance = InActor->GetActorLocation() - Location;
+	}
+}
