@@ -2,6 +2,10 @@
 
 
 #include "CPP_BallPlayer.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "InputMappingContext.h"
+#include "InputActionValue.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -61,6 +65,15 @@ ACPP_BallPlayer::ACPP_BallPlayer()
 	// Cameraを追加する
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
 	Camera->SetupAttachment(SpringArm);
+
+	//MotionBlurをオフにする
+	Camera->PostProcessSettings.MotionBlurAmount = 0.0f;
+
+	//Input Mappint Context「IM_Controls」を読み込む
+	DefaultMappingContext = LoadObject<UInputMappingContext>(nullptr, TEXT("/Game/RollingBall/Input/IM_Controls"));
+
+	//Input Action「IA_Control」を読み込む
+	ControlAction = LoadObject<UInputAction>(nullptr, TEXT("/Game/RollingBall/Input/Action/IA_Control"));
 }
 
 // Called when the game starts or when spawned
@@ -68,6 +81,14 @@ void ACPP_BallPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//Input Mapping Contextを追加
+	if (const APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(DefaultMappingContext, 0);
+		}
+	}
 }
 
 // Called every frame
@@ -81,6 +102,22 @@ void ACPP_BallPlayer::Tick(float DeltaTime)
 void ACPP_BallPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	
+	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		// ControlBallとIA_ControlのTriggeredをBindする
+		EnhancedInputComponent->BindAction(ControlAction, ETriggerEvent::Triggered, this, &ACPP_BallPlayer::ControlBall);
+	}
 }
 
+void ACPP_BallPlayer::ControlBall(const FInputActionValue& Value)
+{
+	//inputのValueはVector2Dに変換できる
+	const FVector2D V = Value.Get<FVector2D>();
+
+	//Vectorを計算する
+	FVector ForceVector = FVector(V.Y, V.X, 0.0f) * Speed;
+
+	//Sphereに力を加える
+	Sphere->AddForce(ForceVector, NAME_None, true);
+}
