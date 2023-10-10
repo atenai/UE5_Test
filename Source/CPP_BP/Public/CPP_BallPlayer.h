@@ -11,6 +11,7 @@
 class UStaticMeshComponent;
 class USpringArmComponent;
 class UCameraComponent;
+class UArrowComponent;
 class UInputMappingContext;
 class UInputAction;
 
@@ -29,6 +30,9 @@ protected:
 
 	//Ballをコントロールする
 	void ControlBall(const FInputActionValue& Value);
+
+	//視点を操作する
+	void Look(const FInputActionValue& Value);
 
 public:	
 	// Called every frame
@@ -63,4 +67,12 @@ private:
 	//Control Input Action
 	UPROPERTY(EditAnywhere, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* ControlAction;
+
+	//Look Input Action
+	UPROPERTY(EditAnywhere, Category = Input, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UInputAction> LookAction;
+
+	//進行方向を表示するArrowComponent
+	UPROPERTY(VisibleAnywhere, Category = Control, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UArrowComponent> Arrow;
 };
