@@ -34,6 +34,12 @@ protected:
 	//視点を操作する
 	void Look(const FInputActionValue& Value);
 
+	//ジャンプする
+	void Jump(const FInputActionValue& Value);
+
+	//Hit EventをBindingする関数
+	virtual void NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -75,4 +81,14 @@ private:
 	//進行方向を表示するArrowComponent
 	UPROPERTY(VisibleAnywhere, Category = Control, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UArrowComponent> Arrow;
+
+	//ジャンプに加える力
+	float JumpImpluse = 500.0f;
+
+	//ジャンプができるか判定するフラグ
+	bool CanJump = false;
+
+	//Jump Input Action
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* JumpAction;
 };

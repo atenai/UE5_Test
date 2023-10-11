@@ -44,6 +44,12 @@ ACPP_BallPlayer::ACPP_BallPlayer()
 	//変数名->SetSimulatePhysics(trueなら有効、falseなら無効);
 	Sphere->SetSimulatePhysics(true);
 
+	// CollisionPresetを「PhysicsActor」に変更する
+	Sphere->SetCollisionProfileName(TEXT("PhysicsActor"));
+
+	//Hit Eventを有効にする
+	Sphere->BodyInstance.bNotifyRigidBodyCollision = true;
+
 	// SpringArmを追加する
 	//変数名 = CreateDefaultSubobject<追加するコンポーネント>(TEXT("表示したい名前"));
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComponent"));
@@ -90,8 +96,11 @@ ACPP_BallPlayer::ACPP_BallPlayer()
 	//Input Action「IA_Control」を読み込む
 	ControlAction = LoadObject<UInputAction>(nullptr, TEXT("/Game/RollingBall/Input/Action/IA_Control"));
 
-	//Input Action 「IA_Look」を読み込む
+	//Input Action「IA_Look」を読み込む
 	LookAction = LoadObject<UInputAction>(nullptr, TEXT("/Game/RollingBall/Input/Action/IA_Look"));
+
+	//Input Action「IA_Jump」を読み込む
+	JumpAction = LoadObject<UInputAction>(nullptr, TEXT("/Game/RollingBall/Input/Action/IA_Jump"));
 }
 
 // Called when the game starts or when spawned
@@ -128,6 +137,9 @@ void ACPP_BallPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	
 		//LookとIA_LookのTriggeredをBindする
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ACPP_BallPlayer::Look);
+	
+		//JumpとIA_JumpのTriggeredをBindする
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACPP_BallPlayer::Jump);
 	}
 }
 
@@ -166,4 +178,20 @@ void ACPP_BallPlayer::Look(const FInputActionValue& Value)
 		//PlayerControllerの角度を設定する
 		UGameplayStatics::GetPlayerController(this, 0)->SetControlRotation(FRotator(LimitPitchAngle, ControlRotate.Yaw, 0.0f));
 	}
+}
+
+void ACPP_BallPlayer::Jump(const FInputActionValue& Value)
+{
+	//inputのValueはboolに変換できる
+	if (const bool V = Value.Get<bool>() && CanJump)
+	{
+		Sphere->AddImpulse(FVector(0.0f, 0.0f, JumpImpluse), TEXT("None"), true);
+		CanJump = false;
+	}
+}
+
+void ACPP_BallPlayer::NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
+{
+	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
+	CanJump = true;
 }
