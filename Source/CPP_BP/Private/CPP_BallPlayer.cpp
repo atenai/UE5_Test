@@ -99,8 +99,11 @@ ACPP_BallPlayer::ACPP_BallPlayer()
 	//Input Action「IA_Look」を読み込む
 	LookAction = LoadObject<UInputAction>(nullptr, TEXT("/Game/RollingBall/Input/Action/IA_Look"));
 
-	//Input Action「IA_Jump」を読み込む
+	//Input Action「IA_Jump」を読み込む（④UnrealEngineで作成したキーを指定したインプットのシステムをロードしてアクション変数に入れる）
 	JumpAction = LoadObject<UInputAction>(nullptr, TEXT("/Game/RollingBall/Input/Action/IA_Jump"));
+
+	//Input Action「IA_Boost」を読み込む
+	BoostAction = LoadObject<UInputAction>(nullptr, TEXT("/Game/RollingBall/Input/Action/IA_Boost"));
 }
 
 // Called when the game starts or when spawned
@@ -138,8 +141,11 @@ void ACPP_BallPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		//LookとIA_LookのTriggeredをBindする
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ACPP_BallPlayer::Look);
 	
-		//JumpとIA_JumpのTriggeredをBindする
+		//JumpとIA_JumpのTriggeredをBindする（⑤インプットのコンポーネントにキー指定の変数と関数を入れる）
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACPP_BallPlayer::Jump);
+	
+		//BoostとIA_BoostのTriggeredをBindする
+		EnhancedInputComponent->BindAction(BoostAction, ETriggerEvent::Triggered, this, &ACPP_BallPlayer::Boost);
 	}
 }
 
@@ -180,6 +186,7 @@ void ACPP_BallPlayer::Look(const FInputActionValue& Value)
 	}
 }
 
+//（②関数の中身を作成する）
 void ACPP_BallPlayer::Jump(const FInputActionValue& Value)
 {
 	//inputのValueはboolに変換できる
@@ -194,4 +201,20 @@ void ACPP_BallPlayer::NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other
 {
 	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);
 	CanJump = true;
+}
+
+void ACPP_BallPlayer::Boost(const FInputActionValue& Value)
+{
+	//inputのValueはboolに変換できる
+	if (const bool V = Value.Get<bool>())
+	{
+		//Arrowが向いている前方方向のVector情報を取得する
+		FVector ForwardVector = Arrow->GetForwardVector().GetSafeNormal(0.0001f);
+
+		//Torqueとして与えるVectorを作成する
+		FVector TorqueVector = FVector(ForwardVector.Y * Torque * -1.0f, ForwardVector.X * Torque, 0.0f);
+
+		//Torqueを与えて加速する
+		Sphere->AddTorqueInRadians(TorqueVector, TEXT("None"), true);
+	}
 }

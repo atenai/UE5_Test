@@ -34,11 +34,14 @@ protected:
 	//視点を操作する
 	void Look(const FInputActionValue& Value);
 
-	//ジャンプする
+	//ジャンプする（①関数を作成する）
 	void Jump(const FInputActionValue& Value);
 
 	//Hit EventをBindingする関数
 	virtual void NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
+
+	//加速する
+	void Boost(const FInputActionValue& Value);
 
 public:	
 	// Called every frame
@@ -88,7 +91,14 @@ private:
 	//ジャンプができるか判定するフラグ
 	bool CanJump = false;
 
-	//Jump Input Action
+	//Jump Input Action（③インプット処理用のアクション変数を作成する）
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* JumpAction;
+
+	//加速する早さ
+	float Torque = 500000000.0f;
+
+	//Boost Input Action
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* BoostAction;
 };
