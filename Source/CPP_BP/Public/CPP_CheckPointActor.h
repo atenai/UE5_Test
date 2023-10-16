@@ -42,4 +42,8 @@ private:
 	//RespawnópÇÃTransformÇçXêVÇ∑ÇÈSceneComponent
 	UPROPERTY(VisibleAnywhere, Category = Checkpoint, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USceneComponent> CheckTransform;
+
+	UFUNCTION()
+	void OnSphereBeginOverpal(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 };
