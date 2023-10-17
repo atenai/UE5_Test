@@ -28,7 +28,14 @@ public:
 	//Player‚ð”jŠü‚·‚é
 	void KillPlayer(ACPP_BallPlayer* Player);
 
+	//Game‚ðRestart‚·‚é
+	void RestartGame();
+
 private:
 	//Player‚ðRespawn‚·‚é
 	void RespawnPlayer();
+
+	//Player‚ÌLife
+	int32 TotalLifes = 3;
+
 };

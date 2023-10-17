@@ -41,6 +41,27 @@ void ACPP_InGameGameMode::KillPlayer(ACPP_BallPlayer* Player)
 	// Player‚ğ”jŠü‚·‚é
 	Player->Destroy();
 
-	// Respawn‚ğs‚¤
-	RespawnPlayer();
+	// TotalLifes‚ğDecriment‚·‚é
+	TotalLifes--;
+
+	if (0 <= TotalLifes)
+	{
+		// Respawn‚ğs‚¤
+		RespawnPlayer();
+	}
+	else
+	{
+		// Game‚ğRestart‚·‚é
+		UE_LOG(LogTemp, Display, TEXT("GameOver"));
+		RestartGame();
+	}
+}
+
+void ACPP_InGameGameMode::RestartGame()
+{
+	// Œ»İ‚ÌLevelName‚ğæ“¾‚·‚é
+	const FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+
+	// Œ»İ‚ÌLevel‚ğŠJ‚«‚È‚¨‚·
+	UGameplayStatics::OpenLevel(GetWorld(), FName(*CurrentLevelName));
 }
