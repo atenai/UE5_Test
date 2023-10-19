@@ -65,3 +65,11 @@ void ACPP_InGameGameMode::RestartGame()
 	// Œ»İ‚ÌLevel‚ğŠJ‚«‚È‚¨‚·
 	UGameplayStatics::OpenLevel(GetWorld(), FName(*CurrentLevelName));
 }
+
+int ACPP_InGameGameMode::AddCoin(const int32 CoinNumber)
+{
+	// æ“¾‚µ‚½ƒRƒCƒ“‚Ì–‡”‚ğ’Ç‰Á‚·‚é
+	TotalCoins = TotalCoins + CoinNumber;
+
+	return TotalCoins;
+}
