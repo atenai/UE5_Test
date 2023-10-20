@@ -11,6 +11,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "CPP_InGameGameMode.h"
 
 //コンストラクタ
 ACPP_BallPlayer::ACPP_BallPlayer()
@@ -217,4 +218,33 @@ void ACPP_BallPlayer::Boost(const FInputActionValue& Value)
 		//Torqueを与えて加速する
 		Sphere->AddTorqueInRadians(TorqueVector, TEXT("None"), true);
 	}
+}
+
+float ACPP_BallPlayer::TakeDamagePlayer(const float Damage)
+{
+	//HPからダメージ分を引く
+	Health = Health - Damage;
+
+	//もしHPが０か０以下なら中身を実行する
+	if (Health <= 0)
+	{
+		//GetWorld()で現在のレベルのGetGameMode()でGameModeを取得して、CPP_InGameGameModeにCastする
+		if (ACPP_InGameGameMode* GameMode = Cast<ACPP_InGameGameMode>(UGameplayStatics::GetGameMode(GetWorld())))
+		{
+			//CPP_InGameGameModeで定義したKillPlayer()を呼び出してPlayerを破棄する
+			GameMode->KillPlayer(this);
+		}
+	}
+
+	//残りのHPを返す
+	return Health;
+}
+
+void ACPP_BallPlayer::Rebound(const float ReboundPower)
+{
+	//ReboundさせるImpluseの値を算出する(矢印の前の逆ベクトルにReboundPowerをかけた数値を取得する)
+	FVector Impluse = Arrow->GetForwardVector() * (-1.0f * ReboundPower);
+
+	// Speherに力を与える
+	Sphere->AddImpulse(Impluse, TEXT("None"), true);
 }

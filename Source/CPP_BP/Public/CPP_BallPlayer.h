@@ -50,6 +50,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	//PlayerにDamageを与える
+	float TakeDamagePlayer(const float Damage);
+
+	//PlayerをReboundさせる
+	void Rebound(const float ReboundPower);
+
 private:
 	//キャラクター用のStaticMesh : Sphere
 	UPROPERTY(VisibleAnywhere, Category = Character, meta = (AllowPrivateAccess = "true"))
