@@ -56,6 +56,9 @@ public:
 	//PlayerをReboundさせる
 	void Rebound(const float ReboundPower);
 
+	//Playerを回復させる
+	float Heal(const float Value);
+
 private:
 	//キャラクター用のStaticMesh : Sphere
 	UPROPERTY(VisibleAnywhere, Category = Character, meta = (AllowPrivateAccess = "true"))
@@ -74,6 +77,9 @@ private:
 
 	//体力
 	float Health = 100.0f;
+
+	//最大体力
+	float HealthMax = 100.0f;
 
 	//MappingContext
 	UPROPERTY(EditAnywhere, Category = Input, meta = (AllowPrivateAccess = "true"))

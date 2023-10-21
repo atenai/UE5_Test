@@ -248,3 +248,11 @@ void ACPP_BallPlayer::Rebound(const float ReboundPower)
 	// SpeherÇ…óÕÇó^Ç¶ÇÈ
 	Sphere->AddImpulse(Impluse, TEXT("None"), true);
 }
+
+float ACPP_BallPlayer::Heal(const float Value)
+{
+	//HealthÇ™HealthMaxà»è„Ç…Ç»ÇÁÇ»Ç¢ÇÊÇ§Ç…êßå¿Ç∑ÇÈ
+	Health = FMath::Clamp(Health + Value, 0 ,HealthMax);
+
+	return Health;
+}
