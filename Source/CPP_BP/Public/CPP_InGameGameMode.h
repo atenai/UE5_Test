@@ -22,9 +22,6 @@ public:
 	//コンストラクタ
 	ACPP_InGameGameMode();
 	
-	// PlayerをRespawnする位置情報
-	FTransform SpawnTransform;
-
 	//Playerを破棄する
 	void KillPlayer(ACPP_BallPlayer* Player);
 
@@ -32,15 +29,18 @@ public:
 	void RestartGame();
 
 	//取得したコインの数
-	int32 TotalCoins = 0;
+	//int32 TotalCoins = 0;
 
 	//取得したコインの枚数を追加する
 	int AddCoin(const int32 CoinNumber);
+
+	// PlayerをRespawnする位置情報
+	FTransform SpawnTransform;
 
 private:
 	//PlayerをRespawnする
 	void RespawnPlayer();
 
 	//PlayerのLife
-	int32 TotalLifes = 3;
+	//int32 TotalLifes = 3;
 };
