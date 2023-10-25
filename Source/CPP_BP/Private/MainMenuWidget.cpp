@@ -25,7 +25,7 @@ void UMainMenuWidget::OnButtonPlayClicked()
 	GameInstance->Initialize();
 
 	// Level01‚ðLoad‚·‚é
-	UGameplayStatics::OpenLevel(GetWorld(), FName(TEXT("Level01")));
+	UGameplayStatics::OpenLevel(GetWorld(), FName(TEXT("CPP_Level01")));
 }
 
 void UMainMenuWidget::OnButtonQuitClicked()
