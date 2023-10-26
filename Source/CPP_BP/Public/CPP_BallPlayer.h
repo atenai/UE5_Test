@@ -59,6 +59,10 @@ public:
 	//Playerを回復させる
 	float Heal(const float Value);
 
+	float GetHealth() const { return Health; }
+
+	float GetHealthMax() const {return HealthMax;}
+
 private:
 	//キャラクター用のStaticMesh : Sphere
 	UPROPERTY(VisibleAnywhere, Category = Character, meta = (AllowPrivateAccess = "true"))
