@@ -7,12 +7,16 @@
 #include "GameFramework/PlayerStart.h"
 #include "CPP_RollingBallGameInstance.h"//アクセスしたいクラスのヘッダーをインクルード
 #include "Engine.h"
+#include "CPP_InGameHUD.h"
 
 //コンストラクタ
 ACPP_InGameGameMode::ACPP_InGameGameMode()
 {
 	//DefaultPawnClass = (プレイヤーとなるClass)::StaticClass();
 	DefaultPawnClass = ACPP_BallPlayer::StaticClass();
+	//HUDに設定する
+	//ACPP_InGameGameMode → ACPP_InGameHUD → CPPBPW_Status(スクリプトでは無くUIウィジェット) → UCPP_StatusWidget
+	HUDClass = ACPP_InGameHUD::StaticClass();
 }
 
 void ACPP_InGameGameMode::BeginPlay()
