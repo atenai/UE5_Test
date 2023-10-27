@@ -21,6 +21,8 @@ bool UCPP_StatusWidget::Initialize()
 		return false;
 	}
 
+	//TextBlockのTextDelegateが有効になっていると参照エラーになってWidgetBlueprintが作成できないので
+	//TextDelegateを使っているスクリプトを親クラスにしたWidgetBlueprintを作成する際は、TextDelegateを使っている所はコメントアウトする必要がある
 	TextBlockHealth->TextDelegate.BindUFunction(this, "SetTextBlockHealth");
 	TextBlockHealthMax->TextDelegate.BindUFunction(this, "SetTextBlockHealthMax");
 	TextBlockTotalLifes->TextDelegate.BindUFunction(this, "SetTextBlockTotalLifes");
