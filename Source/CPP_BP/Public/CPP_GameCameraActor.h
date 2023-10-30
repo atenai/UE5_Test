@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class CPP_BP_API ACPP_GameCameraActor : public ACameraActor
 {
 	GENERATED_BODY()
