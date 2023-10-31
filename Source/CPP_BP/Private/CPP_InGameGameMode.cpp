@@ -8,6 +8,7 @@
 #include "CPP_RollingBallGameInstance.h"//アクセスしたいクラスのヘッダーをインクルード
 #include "Engine.h"
 #include "CPP_InGameHUD.h"
+#include "CPP_InGamePlayerController.h"
 
 //コンストラクタ
 ACPP_InGameGameMode::ACPP_InGameGameMode()
@@ -17,6 +18,7 @@ ACPP_InGameGameMode::ACPP_InGameGameMode()
 	//HUDに設定する
 	//ACPP_InGameGameMode → ACPP_InGameHUD → CPPBPW_Status(スクリプトでは無くUIウィジェット) → UCPP_StatusWidget
 	HUDClass = ACPP_InGameHUD::StaticClass();
+	PlayerControllerClass = ACPP_InGamePlayerController::StaticClass();
 }
 
 void ACPP_InGameGameMode::BeginPlay()

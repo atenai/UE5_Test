@@ -12,17 +12,30 @@ void ACPP_InGameHUD::BeginPlay()
 	FString StatusWidgetPath = TEXT("/Game/RollingBall/Blueprint/UI/CPPBPW_Status.CPPBPW_Status_C");
 	TSubclassOf<UUserWidget> StatusWidgetClass = TSoftClassPtr<UUserWidget>(FSoftObjectPath(*StatusWidgetPath)).LoadSynchronous();
 
+	//WidgetBlueprintのClassを取得する
+	FString PauseWidgetPath = TEXT("/Game/RollingBall/Blueprint/UI/CPPBPW_Pause.CPPBPW_Pause_C");
+	TSubclassOf<UUserWidget> PauseWidgetClass = TSoftClassPtr<UUserWidget>(FSoftObjectPath(*PauseWidgetPath)).LoadSynchronous();
+
 	//PlayerControllerを取得する
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
 
 	//WidgetClassとPlayerControllerが取得できたか判定する
-	if (StatusWidgetClass && PlayerController)
+	if (StatusWidgetClass && PauseWidgetClass && PlayerController)
 	{
 		//Status表示用のWidgetを作成する
 		UUserWidget* StatusWidget = UWidgetBlueprintLibrary::Create(GetWorld(), StatusWidgetClass, PlayerController);
 
 		//Viewportに追加する
 		StatusWidget->AddToViewport(0);
+
+		//Status表示用のWidgetを作成する
+		PauseWidget = UWidgetBlueprintLibrary::Create(GetWorld(), PauseWidgetClass, PlayerController);
+
+		//Pauseメニューを折りたたみ状態にする
+		PauseWidget->SetVisibility(ESlateVisibility::Collapsed);
+
+		//Viewportに追加する
+		PauseWidget->AddToViewport(1);
 	}
 }
 
