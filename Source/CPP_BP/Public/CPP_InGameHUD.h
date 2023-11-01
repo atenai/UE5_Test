@@ -27,7 +27,16 @@ public:
 	//Gameを終了する
 	void QuitGame();
 
+	//ゲームオーバーメニューを表示する
+	void DispGameOver();
+
+	//ゲームを再開する
+	void ContinueGame();
+
 private:
 	//PauseWidgetを保持する変数
 	UUserWidget* PauseWidget;
+
+	//GameOverWidgetを保持する変数
+	UUserWidget* GameOverWidget;
 };

@@ -85,21 +85,30 @@ void ACPP_InGameGameMode::KillPlayer(ACPP_BallPlayer* Player)
 
 void ACPP_InGameGameMode::RestartGame()
 {
-	// GameInstanceを取得する
-	UCPP_RollingBallGameInstance* GameInstance = Cast<UCPP_RollingBallGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
+	//// GameInstanceを取得する
+	//UCPP_RollingBallGameInstance* GameInstance = Cast<UCPP_RollingBallGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
 
-	// GameInstanceの変数を初期化する
-	GameInstance->Initialize();
+	//// GameInstanceの変数を初期化する
+	//GameInstance->Initialize();
 
-	FString String = FString::FromInt(GameInstance->TotalCoints);
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, String);
+	//FString String = FString::FromInt(GameInstance->TotalCoints);
+	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, String);
 
-	// 現在のLevelNameを取得する
-	//const FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
-	FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+	//// 現在のLevelNameを取得する
+	////const FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+	//FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
 
-	// 現在のLevelを開きなおす
-	UGameplayStatics::OpenLevel(GetWorld(), FName(*CurrentLevelName));
+	//// 現在のLevelを開きなおす
+	//UGameplayStatics::OpenLevel(GetWorld(), FName(*CurrentLevelName));
+
+	//PlayerControllerを取得する
+	const APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+
+	//CPP_InGameHUDを取得する
+	ACPP_InGameHUD* HUD = Cast<ACPP_InGameHUD>(PlayerController->GetHUD());
+
+	//ゲームオーバー画面を表示する
+	HUD->DispGameOver();
 }
 
 int ACPP_InGameGameMode::AddCoin(const int32 CoinNumber)

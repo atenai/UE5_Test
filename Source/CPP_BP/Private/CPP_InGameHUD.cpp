@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "CPP_RollingBallGameInstance.h"
 
 void ACPP_InGameHUD::BeginPlay()
 {
@@ -16,11 +17,15 @@ void ACPP_InGameHUD::BeginPlay()
 	FString PauseWidgetPath = TEXT("/Game/RollingBall/Blueprint/UI/CPPBPW_Pause.CPPBPW_Pause_C");
 	TSubclassOf<UUserWidget> PauseWidgetClass = TSoftClassPtr<UUserWidget>(FSoftObjectPath(*PauseWidgetPath)).LoadSynchronous();
 
+	//WidgetBlueprintのClassを取得する
+	FString GameOverWidgetPath = TEXT("/Game/RollingBall/Blueprint/UI/CPPBPW_GameOver.CPPBPW_GameOver_C");
+	TSubclassOf<UUserWidget> GameOverWidgetClass = TSoftClassPtr<UUserWidget>(FSoftObjectPath(*GameOverWidgetPath)).LoadSynchronous();
+
 	//PlayerControllerを取得する
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(),0);
 
 	//WidgetClassとPlayerControllerが取得できたか判定する
-	if (StatusWidgetClass && PauseWidgetClass && PlayerController)
+	if (StatusWidgetClass && PauseWidgetClass && GameOverWidgetClass && PlayerController)
 	{
 		//Status表示用のWidgetを作成する
 		UUserWidget* StatusWidget = UWidgetBlueprintLibrary::Create(GetWorld(), StatusWidgetClass, PlayerController);
@@ -36,6 +41,15 @@ void ACPP_InGameHUD::BeginPlay()
 
 		//Viewportに追加する
 		PauseWidget->AddToViewport(1);
+
+		//ゲームオーバー用のWidgetを作成する
+		GameOverWidget = UWidgetBlueprintLibrary::Create(GetWorld(), GameOverWidgetClass, PlayerController);
+
+		//ゲームオーバーメニューを折りたたみ状態にする
+		GameOverWidget->SetVisibility(ESlateVisibility::Collapsed);
+
+		//ビューポートに追加する
+		GameOverWidget->AddToViewport(2);
 	}
 }
 
@@ -88,4 +102,37 @@ void ACPP_InGameHUD::QuitGame()
 {
 	//ゲームを終了する
 	UKismetSystemLibrary::QuitGame(GetWorld(), GetOwningPlayerController(), EQuitPreference::Quit, false);
+}
+
+void ACPP_InGameHUD::DispGameOver()
+{
+	//ゲームオーバーウィジェットを表示する
+	GameOverWidget->SetVisibility(ESlateVisibility::Visible);
+
+	//プレイヤーコントローラーを取得する
+	APlayerController* PlayerController = GetOwningPlayerController();
+
+	//UIモードに設定する
+	UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(PlayerController, GameOverWidget, EMouseLockMode::DoNotLock, false);
+
+	//ゲームをポーズ状態にする
+	UGameplayStatics::SetGamePaused(GetWorld(), true);
+
+	//マウスカーソルを表示する
+	PlayerController->SetShowMouseCursor(true);
+}
+
+void ACPP_InGameHUD::ContinueGame()
+{
+	//ゲームインスタンスを取得する
+	UCPP_RollingBallGameInstance* GameInstance = Cast<UCPP_RollingBallGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
+
+	//ゲームインスタンスの変数を初期化する
+	GameInstance->Initialize();
+
+	//現在のレベル名を取得する
+	const FString CurrentLevelName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+
+	//現在のレベルを開きなおす
+	UGameplayStatics::OpenLevel(GetWorld(), FName(*CurrentLevelName));
 }
