@@ -3,12 +3,15 @@
 
 #include "CPP_PlayerPawn.h"
 
-// Sets default values
-ACPP_PlayerPawn::ACPP_PlayerPawn()
+ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	StaticMeshComponent = ObjectInitializer.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("StaticMesh"));
+	if (StaticMeshComponent != nullptr)
+	{
+		RootComponent = StaticMeshComponent;
+	}
 
+	PrimaryActorTick.bCanEverTick = true;
 }
 
 // Called when the game starts or when spawned

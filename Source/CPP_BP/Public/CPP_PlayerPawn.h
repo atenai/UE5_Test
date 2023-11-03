@@ -12,18 +12,16 @@ class CPP_BP_API ACPP_PlayerPawn : public APawn
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	ACPP_PlayerPawn();
+	ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer);
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "PlayerMesh", meta = (AllowPrivateAccess = true))
+	class UStaticMeshComponent* StaticMeshComponent;
 };
