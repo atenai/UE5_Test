@@ -2,9 +2,12 @@
 
 
 #include "CPP_PlayerPawn.h"
+#include "UObject/ConstructorHelpers.h"
+#include "Engine/StaticMesh.h"
 
 ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
+	//TestAddComponent(ObjectInitializer);
 	StaticMeshComponent = ObjectInitializer.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("StaticMesh"));
 	if (StaticMeshComponent != nullptr)
 	{
@@ -35,3 +38,19 @@ void ACPP_PlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+void ACPP_PlayerPawn::TestAddComponent(const FObjectInitializer& ObjectInitializer)
+{
+	// USceneComponent を RootComponent にする
+	USceneComponent* NewRootSceneComponent = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, TEXT("NewRootComponent"));
+	if (NewRootSceneComponent != nullptr)
+	{
+		RootComponent = NewRootSceneComponent;
+	}
+
+	// UStaticMeshComponent のアタッチ
+	StaticMeshComponent = ObjectInitializer.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("StaticMeshTest"));
+	if (StaticMeshComponent != nullptr)
+	{
+		StaticMeshComponent->SetupAttachment(RootComponent);
+	}
+}

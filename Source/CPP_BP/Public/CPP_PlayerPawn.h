@@ -24,4 +24,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "PlayerMesh", meta = (AllowPrivateAccess = true))
 	class UStaticMeshComponent* StaticMeshComponent;
+
+private:
+	void TestAddComponent(const FObjectInitializer& ObjectInitializer);
 };
