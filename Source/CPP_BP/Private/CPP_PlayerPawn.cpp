@@ -4,6 +4,7 @@
 #include "CPP_PlayerPawn.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/StaticMesh.h"
+#include "UObject/ConstructorHelpers.h"
 
 ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -12,6 +13,13 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 	if (StaticMeshComponent != nullptr)
 	{
 		RootComponent = StaticMeshComponent;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> PlayerMeshObj(TEXT("/Game/SM_Player.SM_Player"));
+	//初期のStaticMeshにセット
+	if (PlayerMeshObj.Succeeded())
+	{
+		StaticMeshComponent->SetStaticMesh(PlayerMeshObj.Object);
 	}
 
 	PrimaryActorTick.bCanEverTick = true;
