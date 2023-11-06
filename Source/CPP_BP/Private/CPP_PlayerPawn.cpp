@@ -17,7 +17,7 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> PlayerMeshObj(TEXT("/Game/SM_Player.SM_Player"));
 	//初期のStaticMeshにセット
-	if (PlayerMeshObj.Succeeded())
+	if (ensure(PlayerMeshObj.Succeeded()))
 	{
 		StaticMeshComponent->SetStaticMesh(PlayerMeshObj.Object);
 	}
