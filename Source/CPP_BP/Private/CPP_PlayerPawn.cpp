@@ -62,3 +62,8 @@ void ACPP_PlayerPawn::TestAddComponent(const FObjectInitializer& ObjectInitializ
 		StaticMeshComponent->SetupAttachment(RootComponent);
 	}
 }
+
+FVector ACPP_PlayerPawn::GetPlayerMoveDirection(float Direction) const
+{
+	return (FVector(10.0f,0.0f,0.0f) * Direction) + GetActorLocation();
+}

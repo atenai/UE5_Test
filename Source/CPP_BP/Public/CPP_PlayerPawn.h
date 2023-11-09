@@ -25,6 +25,9 @@ public:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "PlayerMesh", meta = (AllowPrivateAccess = true))
 	class UStaticMeshComponent* StaticMeshComponent;
 
+	UFUNCTION(BlueprintPure)
+	FVector GetPlayerMoveDirection(float Direction) const;
+
 private:
 	void TestAddComponent(const FObjectInitializer& ObjectInitializer);
 };
