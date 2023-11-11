@@ -39,11 +39,35 @@ void ACPP_PlayerPawn::Tick(float DeltaTime)
 
 }
 
+//インプット用の初期化処理の関数を作成する①
+//void InitializeDefaultPawnInputBindings()
+//{
+//	static bool bBindingsAdded = false;
+//	if (!bBindingsAdded)
+//	{
+//		bBindingsAdded = true;
+//		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("DefaultPawn_Turn", EKeys::MouseY, 1.0f));
+//	}
+//}
+
+//インプット用の関数を作成する③
+//void ACPP_PlayerPawn::AddControllerYawInput(float Val)
+//{
+//	Super::AddControllerYawInput(Val);
+//
+//	//マウスに合わせて移動させる
+//	SetActorLocation(GetPlayerMoveDirection(Val));
+//}
+
 // Called to bind functionality to input
 void ACPP_PlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
+	check(PlayerInputComponent);
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	//ここでインプット用の処理を初期化する関数を呼んでから↑で作成したインプット用の関数をバインドする④
+	//InitializeDefaultPawnInputBindings();
+	//PlayerInputComponent->BindAxis("DefaultPawn_Turn", this, &ACPP_PlayerPawn::AddControllerYawInput);
 }
 
 void ACPP_PlayerPawn::TestAddComponent(const FObjectInitializer& ObjectInitializer)

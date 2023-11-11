@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/DefaultPawn.h"
 #include "CPP_PlayerPawn.generated.h"
 
 UCLASS(Blueprintable)
@@ -27,6 +28,9 @@ public:
 
 	UFUNCTION(BlueprintPure)
 	FVector GetPlayerMoveDirection(float Direction) const;
+
+	//インプット用の関数を定義する②
+	//virtual void AddControllerYawInput(float Val) override;
 
 private:
 	void TestAddComponent(const FObjectInitializer& ObjectInitializer);
