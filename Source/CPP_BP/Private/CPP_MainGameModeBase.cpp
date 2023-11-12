@@ -3,6 +3,7 @@
 
 #include "CPP_MainGameModeBase.h"
 #include "UObject/ConstructorHelpers.h"
+#include "CPP_MainGamePlayerController.h"
 
 ACPP_MainGameModeBase::ACPP_MainGameModeBase(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -15,4 +16,7 @@ ACPP_MainGameModeBase::ACPP_MainGameModeBase(const FObjectInitializer& ObjectIni
 		//キャラクターをゲームモードのデフォルトポーンクラスに設定
 		DefaultPawnClass = PawnClass.Class;
 	}
+
+	//ゲームモードのコントローラーを設定
+	PlayerControllerClass = ACPP_MainGamePlayerController::StaticClass();
 }

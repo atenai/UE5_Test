@@ -32,6 +32,9 @@ public:
 	//インプット用の関数を定義する②
 	//virtual void AddControllerYawInput(float Val) override;
 
+	UFUNCTION()
+	void MouseMovePitchInput(float Val);
+
 private:
 	void TestAddComponent(const FObjectInitializer& ObjectInitializer);
 };
