@@ -16,4 +16,5 @@ public:
 	virtual void SetupInputComponent() override;
 
 	virtual void AddPitchInput(float Val) override;	
+	void Fire();
 };

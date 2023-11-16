@@ -5,6 +5,9 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/StaticMesh.h"
 #include "UObject/ConstructorHelpers.h"
+#include "CPP_PlayerProjectile.h"
+#include "Engine/World.h"
+#include "Engine.h"
 
 ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -95,4 +98,22 @@ FVector ACPP_PlayerPawn::GetPlayerMoveDirection(float Direction) const
 void ACPP_PlayerPawn::MouseMovePitchInput(float Val)
 {
 	SetActorLocation(GetPlayerMoveDirection(Val));
+}
+
+void ACPP_PlayerPawn::Fire()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Fire3"));
+	UWorld* World = GetWorld();
+	if (World != nullptr)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Fire4"));
+		FRotator SpawnRotator = FRotator::ZeroRotator;//ちゃんと初期化しないと回転が安定しない
+		FVector SpawnLocation = GetActorLocation() + FVector(0.0f,50.0f,0.0f);//自機より少し横に出す
+
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+
+		TSubclassOf<ACPP_PlayerProjectile> ProjectileLoadedClass = StaticLoadClass(ACPP_PlayerProjectile::StaticClass(), nullptr, TEXT("/Game/Blueprints/BP_PlayerProjectile.BP_PlayerProjectile_C"));
+		World->SpawnActor<ACPP_PlayerProjectile>(ProjectileLoadedClass, SpawnLocation, SpawnRotator, SpawnParams);//SpawnActor関数を使⽤することで、Actor を⽣成することができます。
+	}
 }

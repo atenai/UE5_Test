@@ -35,6 +35,8 @@ public:
 	UFUNCTION()
 	void MouseMovePitchInput(float Val);
 
+	void Fire();
+
 private:
 	void TestAddComponent(const FObjectInitializer& ObjectInitializer);
 };
