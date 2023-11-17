@@ -37,6 +37,9 @@ public:
 
 	void Fire();
 
+	UPROPERTY()
+	TSubclassOf<class ACPP_PlayerProjectile> ProjectileClass;
+
 private:
 	void TestAddComponent(const FObjectInitializer& ObjectInitializer);
 };

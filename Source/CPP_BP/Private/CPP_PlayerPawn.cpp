@@ -25,6 +25,14 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 		StaticMeshComponent->SetStaticMesh(PlayerMeshObj.Object);
 	}
 
+	//ブループリントクラスを取得
+	static ConstructorHelpers::FClassFinder<ACPP_PlayerProjectile> PlayerProjectileClass(TEXT("/Game/Blueprints/BP_PlayerProjectile.BP_PlayerProjectile_C"));
+	//↑で取得したブループリントクラスをProjectileClassに保持しておく
+	if (PlayerProjectileClass.Succeeded())
+	{
+		ProjectileClass = PlayerProjectileClass.Class;
+	}
+
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -113,7 +121,9 @@ void ACPP_PlayerPawn::Fire()
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
 
-		TSubclassOf<ACPP_PlayerProjectile> ProjectileLoadedClass = StaticLoadClass(ACPP_PlayerProjectile::StaticClass(), nullptr, TEXT("/Game/Blueprints/BP_PlayerProjectile.BP_PlayerProjectile_C"));
-		World->SpawnActor<ACPP_PlayerProjectile>(ProjectileLoadedClass, SpawnLocation, SpawnRotator, SpawnParams);//SpawnActor関数を使⽤することで、Actor を⽣成することができます。
+		//TSubclassOf<ACPP_PlayerProjectile> ProjectileLoadedClass = StaticLoadClass(ACPP_PlayerProjectile::StaticClass(), nullptr, TEXT("/Game/Blueprints/BP_PlayerProjectile.BP_PlayerProjectile_C"));
+		//World->SpawnActor<ACPP_PlayerProjectile>(ProjectileLoadedClass, SpawnLocation, SpawnRotator, SpawnParams);//SpawnActor関数を使⽤することで、Actor を⽣成することができます。
+
+		World->SpawnActor<ACPP_PlayerProjectile>(ProjectileClass, SpawnLocation, SpawnRotator, SpawnParams);//SpawnActor関数を使⽤することで、Actor を⽣成することができます。
 	}
 }
