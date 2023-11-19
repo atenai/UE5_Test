@@ -30,4 +30,11 @@ public:
 	class UStaticMeshComponent* StaticMeshComponent;
 
 	float DirectionX;//ƒƒ“ƒo•Ï”‚Ì’Ç‰Á
+
+	UPROPERTY()
+	TSubclassOf<class ACPP_EnemyPawn> ProjectileClass;
+
+	float RemainingShotTime;
+
+	void ReloadProjectile();
 };
