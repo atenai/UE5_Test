@@ -6,7 +6,6 @@
 #include "Engine/StaticMesh.h"
 #include "CPP_EnemyProjectile.h"
 #include "Engine.h"
-#include "CPP_PlayerProjectile.h"//Test
 
 // Sets default values
 ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
@@ -25,7 +24,6 @@ ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
 	static ConstructorHelpers::FClassFinder<ACPP_EnemyProjectile> EnemyProjectileClass(TEXT("/Game/Blueprints/BP_EnemyProjectile.BP_EnemyProjectile_C"));
 	if (EnemyProjectileClass.Succeeded())
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("True"));
 		ProjectileClass = EnemyProjectileClass.Class;
 	}
 
