@@ -6,6 +6,7 @@
 #include "Engine/StaticMesh.h"
 #include "CPP_EnemyProjectile.h"
 #include "Engine.h"
+#include "CPP_PlayerProjectile.h"//Test
 
 // Sets default values
 ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
@@ -21,12 +22,12 @@ ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
 
 	DirectionX = -1.0f;//コンストラクタで初期化
 
-	/*static ConstructorHelpers::FClassFinder<ACPP_EnemyProjectile> EnemyProjectileClass(TEXT("/Game/Blueprints/BP_EnemyProjectile.BP_EnemyProjectile_C"));
+	static ConstructorHelpers::FClassFinder<ACPP_EnemyProjectile> EnemyProjectileClass(TEXT("/Game/Blueprints/BP_EnemyProjectile.BP_EnemyProjectile_C"));
 	if (EnemyProjectileClass.Succeeded())
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("True"));
 		ProjectileClass = EnemyProjectileClass.Class;
-	}*/
+	}
 
 	RemainingShotTime = 0.0f;
 
@@ -64,12 +65,12 @@ void ACPP_EnemyPawn::Tick(float DeltaTime)
 		UWorld* World = GetWorld();
 		if (World != nullptr)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("EnemyFireTrue"));
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("EnemyFireTrue"));
 			FRotator SpawnRotator = FRotator::ZeroRotator;
 			FVector SpawnLocation = GetActorLocation() + FVector(0.0f, -50.0f, 0.0f);//少し離れて出す
 			FActorSpawnParameters SpawnParams;
 			SpawnParams.Owner = this;
-			//iWorld->SpawnActor<ACPP_EnemyProjectile>(ProjectileClass, SpawnLocation, SpawnRotator, SpawnParams);
+			World->SpawnActor<ACPP_EnemyProjectile>(ProjectileClass, SpawnLocation, SpawnRotator, SpawnParams);
 		}
 		ReloadProjectile();
 	}

@@ -32,7 +32,7 @@ public:
 	float DirectionX;//ƒƒ“ƒo•Ï”‚Ì’Ç‰Á
 
 	UPROPERTY()
-	TSubclassOf<class ACPP_EnemyPawn> ProjectileClass;
+	TSubclassOf<class ACPP_EnemyProjectile> ProjectileClass;
 
 	float RemainingShotTime;
 
