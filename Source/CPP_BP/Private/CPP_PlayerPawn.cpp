@@ -110,11 +110,11 @@ void ACPP_PlayerPawn::MouseMovePitchInput(float Val)
 
 void ACPP_PlayerPawn::Fire()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Fire3"));
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Fire3"));
 	UWorld* World = GetWorld();
 	if (World != nullptr)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Fire4"));
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Fire4"));
 		FRotator SpawnRotator = FRotator::ZeroRotator;//ちゃんと初期化しないと回転が安定しない
 		FVector SpawnLocation = GetActorLocation() + FVector(0.0f,50.0f,0.0f);//自機より少し横に出す
 

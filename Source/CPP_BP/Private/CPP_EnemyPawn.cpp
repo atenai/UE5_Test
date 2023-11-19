@@ -63,7 +63,7 @@ void ACPP_EnemyPawn::Tick(float DeltaTime)
 		UWorld* World = GetWorld();
 		if (World != nullptr)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, TEXT("EnemyFireTrue"));
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("EnemyPawnTrue"));
 			FRotator SpawnRotator = FRotator::ZeroRotator;
 			FVector SpawnLocation = GetActorLocation() + FVector(0.0f, -50.0f, 0.0f);//è≠Çµó£ÇÍÇƒèoÇ∑
 			FActorSpawnParameters SpawnParams;

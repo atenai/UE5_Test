@@ -3,6 +3,7 @@
 
 #include "CPP_EnemyProjectile.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Engine.h"
 
 ACPP_EnemyProjectile::ACPP_EnemyProjectile() : Super()
 {
@@ -16,5 +17,8 @@ ACPP_EnemyProjectile::ACPP_EnemyProjectile() : Super()
 void ACPP_EnemyProjectile::Tick(float Deltatime)
 {
 	Super::Tick(Deltatime);
+
+	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Orange, TEXT("EnemyProjectileTrue"));
+
 	MoveProjectile(FVector(0.0f, -200.0f, 0.0f), Deltatime);
 }
