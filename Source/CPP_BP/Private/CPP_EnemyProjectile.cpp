@@ -12,6 +12,12 @@ ACPP_EnemyProjectile::ACPP_EnemyProjectile() : Super()
 	{
 		StaticMeshComponent->SetStaticMesh(ProjectileMesh.Object);
 	}
+
+	if (StaticMeshComponent != nullptr)
+	{
+		//エディタのプロジェクト設定にあるコリジョンの項目のPresetに記載してあるコリジョンの項目をスタティックメッシュにアタッチする
+		StaticMeshComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
+	}
 }
 
 void ACPP_EnemyProjectile::Tick(float Deltatime)

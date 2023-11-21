@@ -18,6 +18,12 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 		RootComponent = StaticMeshComponent;
 	}
 
+	if (StaticMeshComponent != nullptr)
+	{
+		//エディタのプロジェクト設定にあるコリジョンの項目のPresetに記載してあるコリジョンの項目をスタティックメッシュにアタッチする
+		StaticMeshComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
+	}
+
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> PlayerMeshObj(TEXT("/Game/SM_Player.SM_Player"));
 	//初期のStaticMeshにセット
 	if (ensure(PlayerMeshObj.Succeeded()))

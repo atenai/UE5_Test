@@ -19,6 +19,12 @@ ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
 		RootComponent = StaticMeshComponent;
 	}
 
+	if (StaticMeshComponent != nullptr)
+	{
+		//エディタのプロジェクト設定にあるコリジョンの項目のPresetに記載してあるコリジョンの項目をスタティックメッシュにアタッチする
+		StaticMeshComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
+	}
+
 	DirectionX = -1.0f;//コンストラクタで初期化
 
 	static ConstructorHelpers::FClassFinder<ACPP_EnemyProjectile> EnemyProjectileClass(TEXT("/Game/Blueprints/BP_EnemyProjectile.BP_EnemyProjectile_C"));
