@@ -3,6 +3,7 @@
 
 #include "CPP_PlayerProjectile.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Engine/World.h"
 
 ACPP_PlayerProjectile::ACPP_PlayerProjectile() : Super()
 {
@@ -18,6 +19,9 @@ ACPP_PlayerProjectile::ACPP_PlayerProjectile() : Super()
 		//エディタのプロジェクト設定にあるコリジョンの項目のPresetに記載してあるコリジョンの項目をスタティックメッシュにアタッチする
 		StaticMeshComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 	}
+
+	//あたり判定のデリゲートに関数を登録
+	OnActorBeginOverlap.AddDynamic(this, &ACPP_PlayerProjectile::OnBeginOverlap);
 }
 
 void ACPP_PlayerProjectile::Tick(float DeltaTime)
@@ -26,4 +30,16 @@ void ACPP_PlayerProjectile::Tick(float DeltaTime)
 
 	//画面横へ飛んでいくようにする
 	MoveProjectile(FVector(0.0f, 400.0f, 0.0f), DeltaTime);
+}
+
+void ACPP_PlayerProjectile::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	//ここに衝突したときの処理を書く
+	UWorld* World = GetWorld();
+	if (World != nullptr)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Orange, TEXT("PlayerBullet"));
+		//何かに当たったら自身を削除
+		World->DestroyActor(this);
+	}
 }

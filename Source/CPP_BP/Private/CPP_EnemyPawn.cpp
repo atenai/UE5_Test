@@ -35,6 +35,9 @@ ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
 
 	RemainingShotTime = 0.0f;
 
+	//‚ ‚½‚è”»’è‚ÌƒfƒŠƒQ[ƒg‚ÉŠÖ”‚ð“o˜^
+	OnActorBeginOverlap.AddDynamic(this, &ACPP_EnemyPawn::OnBeginOverlap);
+
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
@@ -69,9 +72,9 @@ void ACPP_EnemyPawn::Tick(float DeltaTime)
 		UWorld* World = GetWorld();
 		if (World != nullptr)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("EnemyPawnTrue"));
+			//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("EnemyPawnTrue"));
 			FRotator SpawnRotator = FRotator::ZeroRotator;
-			FVector SpawnLocation = GetActorLocation() + FVector(0.0f, -50.0f, 0.0f);//­‚µ—£‚ê‚Äo‚·
+			FVector SpawnLocation = GetActorLocation() + FVector(0.0f, -100.0f, 0.0f);//­‚µ—£‚ê‚Äo‚·
 			FActorSpawnParameters SpawnParams;
 			SpawnParams.Owner = this;
 			World->SpawnActor<ACPP_EnemyProjectile>(ProjectileClass, SpawnLocation, SpawnRotator, SpawnParams);
@@ -91,5 +94,11 @@ void ACPP_EnemyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void ACPP_EnemyPawn::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	//‚±‚±‚ÉÕ“Ë‚µ‚½‚Æ‚«‚Ìˆ—‚ð‘‚­
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Enemy"));
 }
 

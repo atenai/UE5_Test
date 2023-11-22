@@ -18,4 +18,8 @@ public:
 	ACPP_EnemyProjectile();
 
 	virtual void Tick(float Deltatime);
+
+	//デリゲートに登録する関数は、UFUNCTIONが必須です
+	UFUNCTION()
+	void OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
 };

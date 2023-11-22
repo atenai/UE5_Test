@@ -39,6 +39,21 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 		ProjectileClass = PlayerProjectileClass.Class;
 	}
 
+	// BoxComponentを追加し、BoxComponentをRootComponentにAttachする
+	Collider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+	Collider->SetupAttachment(RootComponent);
+
+	// Boxのサイズを設定する
+	Collider->SetBoxExtent(FVector(50.0f, 50.0f, 50.0f));
+
+	// Boxの位置を調整する
+	Collider->SetRelativeLocation(FVector(0.0f, 0.0f, 20.0f), false);
+
+	Collider->OnComponentBeginOverlap.AddDynamic(this, &ACPP_PlayerPawn::OnBoxBeginOverlap);
+
+	//あたり判定のデリゲートに関数を登録
+	this->OnActorBeginOverlap.AddDynamic(this, &ACPP_PlayerPawn::OnBeginOverlap);
+
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -116,13 +131,13 @@ void ACPP_PlayerPawn::MouseMovePitchInput(float Val)
 
 void ACPP_PlayerPawn::Fire()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Fire3"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Fire3"));
 	UWorld* World = GetWorld();
 	if (World != nullptr)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Fire4"));
+		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Fire4"));
 		FRotator SpawnRotator = FRotator::ZeroRotator;//ちゃんと初期化しないと回転が安定しない
-		FVector SpawnLocation = GetActorLocation() + FVector(0.0f,50.0f,0.0f);//自機より少し横に出す
+		FVector SpawnLocation = GetActorLocation() + FVector(0.0f,100.0f,0.0f);//自機より少し横に出す
 
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
@@ -132,4 +147,16 @@ void ACPP_PlayerPawn::Fire()
 
 		World->SpawnActor<ACPP_PlayerProjectile>(ProjectileClass, SpawnLocation, SpawnRotator, SpawnParams);//SpawnActor関数を使⽤することで、Actor を⽣成することができます。
 	}
+}
+
+void ACPP_PlayerPawn::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
+{
+	//ここに衝突したときの処理を書く
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Player1"));
+}
+
+void ACPP_PlayerPawn::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	//ここに衝突したときの処理を書く
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Cyan, TEXT("Player2"));
 }

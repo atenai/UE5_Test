@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/DefaultPawn.h"
+#include "Components/BoxComponent.h"
 #include "CPP_PlayerPawn.generated.h"
 
 UCLASS(Blueprintable)
@@ -39,6 +40,17 @@ public:
 
 	UPROPERTY()
 	TSubclassOf<class ACPP_PlayerProjectile> ProjectileClass;
+
+	//protectedにUPROPERTYをつけて当たり判定コンポーネントの変数を作成
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UBoxComponent> Collider;
+
+	//デリゲートに登録する関数は、UFUNCTIONが必須です
+	UFUNCTION()
+	void OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
+
+		UFUNCTION()
+	void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 private:
 	void TestAddComponent(const FObjectInitializer& ObjectInitializer);
