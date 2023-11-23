@@ -5,6 +5,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/StaticMesh.h"
 #include "CPP_EnemyProjectile.h"
+#include "Particles/ParticleSystem.h"
 #include "Engine.h"
 
 // Sets default values
@@ -37,6 +38,13 @@ ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
 
 	//あたり判定のデリゲートに関数を登録
 	OnActorBeginOverlap.AddDynamic(this, &ACPP_EnemyPawn::OnBeginOverlap);
+
+	//コンストラクタ内に追加実装
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> ExplosionParticleObj(TEXT("/Game/StarterContent/Particles/P_Explosion.P_Explosion"));
+	if (ExplosionParticleObj.Succeeded())
+	{
+		ExplosionParticle = ExplosionParticleObj.Object;
+	}
 
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -89,7 +97,6 @@ void ACPP_EnemyPawn::ReloadProjectile()
 	RemainingShotTime = FMath::RandRange(1.0f, 2.0f);
 }
 
-// Called to bind functionality to input
 void ACPP_EnemyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -100,5 +107,12 @@ void ACPP_EnemyPawn::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
 	//ここに衝突したときの処理を書く
 	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Enemy"));
+
+	EffectInstance();
 }
 
+void ACPP_EnemyPawn::EffectInstance()
+{
+	//RootComponentにExplosionParticleをアタッチして生成
+	UGameplayStatics::SpawnEmitterAttached(ExplosionParticle, GetRootComponent(), NAME_None, FVector::ZeroVector, FRotator::ZeroRotator, EAttachLocation::KeepRelativeOffset);
+}
