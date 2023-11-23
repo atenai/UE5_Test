@@ -39,6 +39,13 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 		ProjectileClass = PlayerProjectileClass.Class;
 	}
 
+	//コンストラクタ内に追加
+	static ConstructorHelpers::FClassFinder<AActor> PlayerExplosionClass(TEXT("/Game/StarterContent/Blueprints/Blueprint_Effect_Explosion.Blueprint_Effect_Explosion_C"));
+	if (PlayerExplosionClass.Succeeded())
+	{
+		ExplosionClass = PlayerExplosionClass.Class;
+	}
+
 	// BoxComponentを追加し、BoxComponentをRootComponentにAttachする
 	Collider = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	Collider->SetupAttachment(RootComponent);
@@ -57,14 +64,12 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-// Called when the game starts or when spawned
 void ACPP_PlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-// Called every frame
 void ACPP_PlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -91,7 +96,6 @@ void ACPP_PlayerPawn::Tick(float DeltaTime)
 //	SetActorLocation(GetPlayerMoveDirection(Val));
 //}
 
-// Called to bind functionality to input
 void ACPP_PlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	check(PlayerInputComponent);
@@ -138,7 +142,6 @@ void ACPP_PlayerPawn::Fire()
 		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Fire4"));
 		FRotator SpawnRotator = FRotator::ZeroRotator;//ちゃんと初期化しないと回転が安定しない
 		FVector SpawnLocation = GetActorLocation() + FVector(0.0f,100.0f,0.0f);//自機より少し横に出す
-
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
 
@@ -147,12 +150,46 @@ void ACPP_PlayerPawn::Fire()
 
 		World->SpawnActor<ACPP_PlayerProjectile>(ProjectileClass, SpawnLocation, SpawnRotator, SpawnParams);//SpawnActor関数を使⽤することで、Actor を⽣成することができます。
 	}
+
+	//EffectInstance();
+	//TestActorInstance();
 }
 
 void ACPP_PlayerPawn::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
 	//ここに衝突したときの処理を書く
 	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Player1"));
+
+	EffectInstance();
+}
+
+void ACPP_PlayerPawn::EffectInstance()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Effect"));
+	UWorld* World = GetWorld();
+	if (World != nullptr)
+	{
+		FRotator SpawnRotator = FRotator::ZeroRotator;//ちゃんと初期化しないと回転が安定しない
+		FVector SpawnLocation = GetActorLocation();
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		World->SpawnActor<AActor>(ExplosionClass, SpawnLocation, SpawnRotator, SpawnParams);
+	}
+}
+
+void ACPP_PlayerPawn::TestActorInstance()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Orange, TEXT("TestActorInstance"));
+	UWorld* World = GetWorld();
+	if (World != nullptr)
+	{
+		FRotator SpawnRotator = FRotator::ZeroRotator;//ちゃんと初期化しないと回転が安定しない
+		FVector SpawnLocation = GetActorLocation() + FVector(0.0f, 100.0f, 0.0f);//自機より少し横に出す
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		TSubclassOf<AActor> ProjectileLoadedClass = StaticLoadClass(AActor::StaticClass(), nullptr, TEXT("/Game/Blueprints/BP_TestActor.BP_TestActor_C"));
+		World->SpawnActor<AActor>(ProjectileLoadedClass, SpawnLocation, SpawnRotator, SpawnParams);//SpawnActor関数を使⽤することで、Actor を⽣成することができます。
+	}
 }
 
 void ACPP_PlayerPawn::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

@@ -18,6 +18,7 @@ void ACPP_MainGameProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	SetLifeSpan(3.0f);//3秒でDestroyする
 }
 
 // Called every frame
