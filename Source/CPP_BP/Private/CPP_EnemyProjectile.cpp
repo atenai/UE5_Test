@@ -22,6 +22,8 @@ ACPP_EnemyProjectile::ACPP_EnemyProjectile() : Super()
 
 	//‚ ‚½‚è”»’è‚ÌƒfƒŠƒQ[ƒg‚ÉŠÖ”‚ð“o˜^
 	OnActorBeginOverlap.AddDynamic(this, &ACPP_EnemyProjectile::OnBeginOverlap);
+
+	Tags.AddUnique(TEXT("EnemyType"));
 }
 
 void ACPP_EnemyProjectile::Tick(float Deltatime)
@@ -39,8 +41,14 @@ void ACPP_EnemyProjectile::OnBeginOverlap(AActor* OverlappedActor, AActor* Other
 	UWorld* World = GetWorld();
 	if (World != nullptr)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, TEXT("EnemyBullet"));
-		//‰½‚©‚É“–‚½‚Á‚½‚çŽ©g‚ðíœ
-		World->DestroyActor(this);
+		if (OtherActor != nullptr)
+		{
+			if (OtherActor->ActorHasTag(TEXT("PlayerType")))
+			{
+				GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, TEXT("EnemyBullet"));
+				//‰½‚©‚É“–‚½‚Á‚½‚çŽ©g‚ðíœ
+				World->DestroyActor(this);
+			}
+		}
 	}
 }

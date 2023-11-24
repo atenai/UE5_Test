@@ -61,6 +61,8 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 	//あたり判定のデリゲートに関数を登録
 	this->OnActorBeginOverlap.AddDynamic(this, &ACPP_PlayerPawn::OnBeginOverlap);
 
+	Tags.AddUnique(TEXT("PlayerType"));
+
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -157,10 +159,16 @@ void ACPP_PlayerPawn::Fire()
 
 void ACPP_PlayerPawn::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
-	//ここに衝突したときの処理を書く
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Player1"));
-
-	EffectInstance();
+	if (OtherActor != nullptr)
+	{
+		//敵か敵の弾に当たったとき自分を消滅させる
+		if (OtherActor->ActorHasTag(TEXT("EnemyType")))
+		{
+			//ここに衝突したときの処理を書く
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Player1"));
+			EffectInstance();
+		}
+	}
 }
 
 void ACPP_PlayerPawn::EffectInstance()

@@ -46,6 +46,8 @@ ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
 		ExplosionParticle = ExplosionParticleObj.Object;
 	}
 
+	Tags.AddUnique(TEXT("EnemyType"));
+
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
@@ -105,10 +107,15 @@ void ACPP_EnemyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void ACPP_EnemyPawn::OnBeginOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
-	//‚±‚±‚ÉÕ“Ë‚µ‚½‚Æ‚«‚Ìˆ—‚ð‘‚­
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Enemy"));
-
-	EffectInstance();
+	if (OtherActor != nullptr)
+	{
+		if (OtherActor->ActorHasTag(TEXT("PlayerType")))
+		{
+			//‚±‚±‚ÉÕ“Ë‚µ‚½‚Æ‚«‚Ìˆ—‚ð‘‚­
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Enemy"));
+			EffectInstance();
+		}
+	}
 }
 
 void ACPP_EnemyPawn::EffectInstance()
