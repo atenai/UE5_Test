@@ -4,6 +4,8 @@
 #include "CPP_PlayerProjectile.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/World.h"
+#include "CPP_EnemyPawn.h"
+#include "CPP_EnemyProjectile.h"
 
 ACPP_PlayerProjectile::ACPP_PlayerProjectile() : Super()
 {
@@ -38,8 +40,15 @@ void ACPP_PlayerProjectile::OnBeginOverlap(AActor* OverlappedActor, AActor* Othe
 	UWorld* World = GetWorld();
 	if (World != nullptr)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Orange, TEXT("PlayerBullet"));
-		//‰½‚©‚É“–‚½‚Á‚½‚çŽ©g‚ðíœ
-		World->DestroyActor(this);
+		if(OtherActor != nullptr)
+		{
+			//“G‚©“G‚Ì’e‚É“–‚½‚Á‚½‚Æ‚«Ž©•ª‚ðÁ–Å‚³‚¹‚é
+			if(OtherActor->IsA<ACPP_EnemyPawn>() || OtherActor->IsA<ACPP_EnemyProjectile>())
+			{
+				GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Orange, TEXT("PlayerBullet"));
+				//‰½‚©‚É“–‚½‚Á‚½‚çŽ©g‚ðíœ
+				World->DestroyActor(this);
+			}
+		}
 	}
 }
