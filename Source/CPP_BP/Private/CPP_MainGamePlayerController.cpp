@@ -6,6 +6,8 @@
 #include "GameFramework/InputSettings.h"
 #include "CPP_PlayerPawn.h"
 #include "Engine.h"
+#include "CPP_GameCameraActor.h"
+#include "Kismet/GameplayStatics.h"
 
 void ACPP_MainGamePlayerController::SetupInputComponent()
 {
@@ -41,4 +43,22 @@ void ACPP_MainGamePlayerController::Fire()
 		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Fire2"));
 		PossessedPawn->Fire();
 	}
+}
+
+void ACPP_MainGamePlayerController::BeginPlay()
+{
+	TArray<AActor*> FindedActors;
+	UGameplayStatics::GetAllActorsOfClass(this, ACPP_GameCameraActor::StaticClass(), FindedActors);
+
+	for (AActor* Actor : FindedActors)
+	{
+		ACPP_GameCameraActor* Camera = Cast<ACPP_GameCameraActor>(Actor);
+		if (Camera != nullptr)
+		{
+			GameCameras.Add(Camera);
+		}
+	}
+
+	//Super::BeginPlayは最後に呼んでおく（Blueprintの処理が先に行われる？を参照）
+	Super::BeginPlay();
 }

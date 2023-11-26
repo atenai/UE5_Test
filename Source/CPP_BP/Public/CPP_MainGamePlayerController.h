@@ -17,4 +17,10 @@ public:
 
 	virtual void AddPitchInput(float Val) override;	
 	void Fire();
+
+	virtual void BeginPlay() override;
+
+private:
+	UPROPERTY()
+	TArray<class ACPP_GameCameraActor*> GameCameras;
 };
