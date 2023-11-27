@@ -20,6 +20,9 @@ public:
 
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
+	class ACPP_GameCameraActor* ChangeGameCamera(const FName& Tag);
+
 private:
 	UPROPERTY()
 	TArray<class ACPP_GameCameraActor*> GameCameras;

@@ -62,3 +62,21 @@ void ACPP_MainGamePlayerController::BeginPlay()
 	//Super::BeginPlayは最後に呼んでおく（Blueprintの処理が先に行われる？を参照）
 	Super::BeginPlay();
 }
+
+ACPP_GameCameraActor* ACPP_MainGamePlayerController::ChangeGameCamera(const FName& Tag)
+{
+	for (ACPP_GameCameraActor* Camera : GameCameras)//foreach
+	{
+		if (Camera != nullptr)
+		{
+			if (Camera->ActorHasTag(Tag))
+			{
+				//切り替えたいカメラを発見
+				SetViewTargetWithBlend(Cast<AActor>(Camera));
+				return Camera;
+			}
+		}
+	}
+
+	return Cast<ACPP_GameCameraActor>(GetViewTarget());
+}
