@@ -75,6 +75,7 @@ void ACPP_MainGamePlayerController::BeginPlay()
 
 	if (PauseMenuWidgetClass != nullptr)
 	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, TEXT("Pause1"));
 		PauseMenuWidget = CreateWidget<UCPP_PauseMenuWidget>(this, PauseMenuWidgetClass);
 	}
 
@@ -102,10 +103,13 @@ ACPP_GameCameraActor* ACPP_MainGamePlayerController::ChangeGameCamera(const FNam
 
 void ACPP_MainGamePlayerController::OnPauseMenu()
 {
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, TEXT("Pause2"));
 	if (PauseMenuWidget != nullptr)
 	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, TEXT("Pause3"));
 		if (!PauseMenuWidget->IsInViewport())
 		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, TEXT("Pause4"));
 			PauseMenuWidget->AddToViewport();
 
 			//UMG以外のインプットが反応しないようにする
