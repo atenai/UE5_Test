@@ -13,6 +13,9 @@ class CPP_BP_API ACPP_MainGamePlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
+	//コンストラクタ宣言がなかったので追加
+	ACPP_MainGamePlayerController();
+
 	virtual void SetupInputComponent() override;
 
 	virtual void AddPitchInput(float Val) override;	
@@ -22,6 +25,15 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	class ACPP_GameCameraActor* ChangeGameCamera(const FName& Tag);
+
+	UFUNCTION()
+	void OnPauseMenu();//Pキーで呼び出される関数
+
+	UPROPERTY()
+	TSubclassOf<class UCPP_PauseMenuWidget> PauseMenuWidgetClass;
+
+	UPROPERTY()
+	class UCPP_PauseMenuWidget* PauseMenuWidget;
 
 private:
 	UPROPERTY()

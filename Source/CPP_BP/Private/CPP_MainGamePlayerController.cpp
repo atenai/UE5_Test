@@ -8,6 +8,17 @@
 #include "Engine.h"
 #include "CPP_GameCameraActor.h"
 #include "Kismet/GameplayStatics.h"
+#include "UObject/ConstructorHelpers.h"
+#include "CPP_PauseMenuWidget.h"
+
+ACPP_MainGamePlayerController::ACPP_MainGamePlayerController() : Super()
+{
+	static ConstructorHelpers::FClassFinder<UCPP_PauseMenuWidget> PauseMenuClass(TEXT("/Game/WBP_PauseMenu"));
+	if (PauseMenuClass.Succeeded())
+	{
+		PauseMenuWidgetClass = PauseMenuClass.Class;
+	}
+}
 
 void ACPP_MainGamePlayerController::SetupInputComponent()
 {
@@ -21,6 +32,9 @@ void ACPP_MainGamePlayerController::SetupInputComponent()
 	//左マウスボタンが押されたらバインドした関数を呼ぶように登録
 	GetMutableDefault<UInputSettings>()->AddActionMapping(FInputActionKeyMapping("Player_Fire", EKeys::LeftMouseButton));//ここでアンリアルエンジンに操作方法を登録
 	InputComponent->BindAction("Player_Fire", IE_Pressed, this, &ACPP_MainGamePlayerController::Fire);//ここで登録した操作方法に関数をバインド
+
+	GetMutableDefault<UInputSettings>()->AddActionMapping(FInputActionKeyMapping("Player_Pause", EKeys::P));
+	InputComponent->BindAction("Player_Pause", IE_Pressed, this, &ACPP_MainGamePlayerController::OnPauseMenu);
 }
 
 //"Player_MovePitch"入力に反応する関数
@@ -59,6 +73,11 @@ void ACPP_MainGamePlayerController::BeginPlay()
 		}
 	}
 
+	if (PauseMenuWidgetClass != nullptr)
+	{
+		PauseMenuWidget = CreateWidget<UCPP_PauseMenuWidget>(this, PauseMenuWidgetClass);
+	}
+
 	//Super::BeginPlayは最後に呼んでおく（Blueprintの処理が先に行われる？を参照）
 	Super::BeginPlay();
 }
@@ -79,4 +98,19 @@ ACPP_GameCameraActor* ACPP_MainGamePlayerController::ChangeGameCamera(const FNam
 	}
 
 	return Cast<ACPP_GameCameraActor>(GetViewTarget());
+}
+
+void ACPP_MainGamePlayerController::OnPauseMenu()
+{
+	if (PauseMenuWidget != nullptr)
+	{
+		if (!PauseMenuWidget->IsInViewport())
+		{
+			PauseMenuWidget->AddToViewport();
+
+			//UMG以外のインプットが反応しないようにする
+			SetInputMode(FInputModeUIOnly().SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture).SetWidgetToFocus(PauseMenuWidget->TakeWidget()));
+			bShowMouseCursor = true;//マウスカーソルをON
+		}
+	}
 }
