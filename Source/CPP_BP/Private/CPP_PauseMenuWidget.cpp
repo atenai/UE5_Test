@@ -4,21 +4,29 @@
 #include "CPP_PauseMenuWidget.h"
 #include "Components/Button.h"
 
-bool UCPP_PauseMenuWidget::Initialize()
-{
-	bool bRet = Super::Initialize();
-	GoToTitleButton->OnClicked.AddDynamic(this, &UCPP_PauseMenuWidget::OnClickedGoToTitle);
-	CloseMenuButton->OnClicked.AddDynamic(this, &UCPP_PauseMenuWidget::OnClickedClose);
+//bool UCPP_PauseMenuWidget::Initialize()
+//{
+//	bool bRet = Super::Initialize();
+//	GoToTitleButton->OnClicked.AddDynamic(this, &UCPP_PauseMenuWidget::OnClickedGoToTitle);
+//	CloseMenuButton->OnClicked.AddDynamic(this, &UCPP_PauseMenuWidget::OnClickedClose);
+//
+//	return bRet;
+//}
 
-	return bRet;
-}
+//void UCPP_PauseMenuWidget::OnClickedGoToTitle()
+//{
+//
+//}
 
-void UCPP_PauseMenuWidget::OnClickedGoToTitle()
-{
+//void UCPP_PauseMenuWidget::OnClickedClose()
+//{
+//	if (IsInViewport())
+//	{
+//		RemoveFromParent();
+//	}
+//}
 
-}
-
-void UCPP_PauseMenuWidget::OnClickedClose()
+void UCPP_PauseMenuWidget::CloseMenu()
 {
 	if (IsInViewport())
 	{
