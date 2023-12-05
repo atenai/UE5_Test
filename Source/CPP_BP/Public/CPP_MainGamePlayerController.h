@@ -35,6 +35,12 @@ public:
 	UPROPERTY()
 	class UCPP_PauseMenuWidget* PauseMenuWidget;
 
+	UFUNCTION()
+	void OnPauseMenuGotoTitleButton();
+
+	UFUNCTION()
+	void OnPauseMenuCloseButton();
+
 private:
 	UPROPERTY()
 	TArray<class ACPP_GameCameraActor*> GameCameras;

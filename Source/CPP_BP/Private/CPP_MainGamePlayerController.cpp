@@ -10,6 +10,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "UObject/ConstructorHelpers.h"
 #include "CPP_PauseMenuWidget.h"
+#include "Components/Button.h"
 
 ACPP_MainGamePlayerController::ACPP_MainGamePlayerController() : Super()
 {
@@ -77,6 +78,8 @@ void ACPP_MainGamePlayerController::BeginPlay()
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Purple, TEXT("Pause1"));
 		PauseMenuWidget = CreateWidget<UCPP_PauseMenuWidget>(this, PauseMenuWidgetClass);
+		PauseMenuWidget->GoToTitleButton->OnClicked.AddDynamic(this, &ACPP_MainGamePlayerController::OnPauseMenuGotoTitleButton);
+		PauseMenuWidget->CloseMenuButton->OnClicked.AddDynamic(this, &ACPP_MainGamePlayerController::OnPauseMenuCloseButton);
 	}
 
 	//Super::BeginPlayは最後に呼んでおく（Blueprintの処理が先に行われる？を参照）
@@ -116,5 +119,21 @@ void ACPP_MainGamePlayerController::OnPauseMenu()
 			SetInputMode(FInputModeUIOnly().SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture).SetWidgetToFocus(PauseMenuWidget->TakeWidget()));
 			bShowMouseCursor = true;//マウスカーソルをON
 		}
+	}
+}
+
+void ACPP_MainGamePlayerController::OnPauseMenuGotoTitleButton()
+{
+
+}
+
+void ACPP_MainGamePlayerController::OnPauseMenuCloseButton()
+{
+	if (PauseMenuWidget != nullptr)
+	{
+		PauseMenuWidget->CloseMenu();
+
+		SetInputMode(FInputModeGameOnly());
+		bShowMouseCursor = false;
 	}
 }
