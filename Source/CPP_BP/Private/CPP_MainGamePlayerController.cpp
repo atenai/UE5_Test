@@ -118,6 +118,7 @@ void ACPP_MainGamePlayerController::OnPauseMenu()
 			//UMG以外のインプットが反応しないようにする
 			SetInputMode(FInputModeUIOnly().SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture).SetWidgetToFocus(PauseMenuWidget->TakeWidget()));
 			bShowMouseCursor = true;//マウスカーソルをON
+			SetPause(true);//ポーズを有効にする
 		}
 	}
 }
@@ -135,5 +136,6 @@ void ACPP_MainGamePlayerController::OnPauseMenuCloseButton()
 
 		SetInputMode(FInputModeGameOnly());
 		bShowMouseCursor = false;
+		SetPause(false);//ポーズを解除する
 	}
 }
