@@ -14,4 +14,13 @@ class CPP_BP_API UCPP_TitleMenuWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
+public:
+	//イニシャライズを作成
+	virtual bool Initialize() override;
+
+	UPROPERTY()
+	class UButton* SelectEasyButton;
+
+	UPROPERTY()
+	class UButton* SelectHardButton;
 };
