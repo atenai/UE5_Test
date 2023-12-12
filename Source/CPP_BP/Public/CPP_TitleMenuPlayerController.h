@@ -14,4 +14,20 @@ class CPP_BP_API ACPP_TitleMenuPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+public:
+	ACPP_TitleMenuPlayerController();
+	
+	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	void OnPushedEasyButton();
+
+	UFUNCTION()
+	void OnPushedHardButton();
+
+private:
+	TSubclassOf<class UUserWidget> TitleMenuWidgetClass;
+
+	UPROPERTY()
+	class UCPP_TitleMenuWidget* TitleMenuWidget;
 };
