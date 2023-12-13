@@ -14,4 +14,6 @@ class CPP_BP_API ACPP_TitleMenuGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+	ACPP_TitleMenuGameMode();
 };

@@ -7,20 +7,24 @@
 #include "Blueprint/UserWidget.h"
 #include "CPP_TitleMenuWidget.h"
 #include "Components/Button.h"
+#include "Engine.h"
 
 ACPP_TitleMenuPlayerController::ACPP_TitleMenuPlayerController() : Super()
 {
 	static ConstructorHelpers::FClassFinder<UUserWidget> WidgetClass(TEXT("/Game/WBP_TitleMenu"));
 	if (WidgetClass.Succeeded())
 	{
+		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Title2"));
 		TitleMenuWidgetClass = WidgetClass.Class;
 	}
 }
 
 void ACPP_TitleMenuPlayerController::BeginPlay()
 {
-	if (TitleMenuWidget != nullptr)
+	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("Title3"));
+	if (TitleMenuWidgetClass != nullptr)
 	{
+		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Cyan, TEXT("Title4"));
 		TitleMenuWidget = CreateWidget<UCPP_TitleMenuWidget>(this, TitleMenuWidgetClass.Get());
 		if (TitleMenuWidget)
 		{
