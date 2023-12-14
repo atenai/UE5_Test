@@ -8,6 +8,7 @@
 #include "CPP_TitleMenuWidget.h"
 #include "Components/Button.h"
 #include "Engine.h"
+#include "Kismet/GameplayStatics.h"
 
 ACPP_TitleMenuPlayerController::ACPP_TitleMenuPlayerController() : Super()
 {
@@ -41,7 +42,7 @@ void ACPP_TitleMenuPlayerController::BeginPlay()
 
 void ACPP_TitleMenuPlayerController::OnPushedEasyButton()
 {
-
+	UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/MainGame"));
 }
 
 void ACPP_TitleMenuPlayerController::OnPushedHardButton()
