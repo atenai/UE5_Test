@@ -5,6 +5,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "GameFramework/PlayerController.h"
 #include "Engine.h"
+#include "Kismet/GameplayStatics.h"
 
 ACPP_TitleMenuGameMode::ACPP_TitleMenuGameMode() : Super()
 {
@@ -14,4 +15,9 @@ ACPP_TitleMenuGameMode::ACPP_TitleMenuGameMode() : Super()
 		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Magenta, TEXT("Title1"));
 		PlayerControllerClass = PCClass.Class;
 	}
+}
+
+void ACPP_TitleMenuGameMode::StartGame(EMyGameDifficultType Type)
+{
+	UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/MainGame"));
 }

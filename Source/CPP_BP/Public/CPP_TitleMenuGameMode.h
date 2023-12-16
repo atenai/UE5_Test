@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "CPP_MyGameTypes.h"
 #include "CPP_TitleMenuGameMode.generated.h"
 
 /**
@@ -16,4 +17,7 @@ class CPP_BP_API ACPP_TitleMenuGameMode : public AGameModeBase
 	
 public:
 	ACPP_TitleMenuGameMode();
+
+	UFUNCTION()
+	void StartGame(EMyGameDifficultType Type);
 };

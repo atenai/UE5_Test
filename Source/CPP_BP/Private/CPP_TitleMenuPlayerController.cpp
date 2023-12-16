@@ -9,6 +9,7 @@
 #include "Components/Button.h"
 #include "Engine.h"
 #include "Kismet/GameplayStatics.h"
+#include "CPP_TitleMenuGameMode.h"
 
 ACPP_TitleMenuPlayerController::ACPP_TitleMenuPlayerController() : Super()
 {
@@ -42,10 +43,27 @@ void ACPP_TitleMenuPlayerController::BeginPlay()
 
 void ACPP_TitleMenuPlayerController::OnPushedEasyButton()
 {
-	UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/MainGame"));
+	//UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/MainGame"));
+	UWorld* World = GetWorld();
+	if (World != nullptr)
+	{
+		ACPP_TitleMenuGameMode* GameMode = World->GetAuthGameMode<ACPP_TitleMenuGameMode>();
+		if (GameMode != nullptr)
+		{
+			GameMode->StartGame(EMyGameDifficultType::EASY);
+		}
+	}
 }
 
 void ACPP_TitleMenuPlayerController::OnPushedHardButton()
 {
-
+	UWorld* World = GetWorld();
+	if (World != nullptr)
+	{
+		ACPP_TitleMenuGameMode* GameMode = World->GetAuthGameMode<ACPP_TitleMenuGameMode>();
+		if (GameMode != nullptr)
+		{
+			GameMode->StartGame(EMyGameDifficultType::HARD);
+		}
+	}
 }
