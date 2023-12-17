@@ -125,7 +125,17 @@ void ACPP_MainGamePlayerController::OnPauseMenu()
 
 void ACPP_MainGamePlayerController::OnPauseMenuGotoTitleButton()
 {
+	if (PauseMenuWidget != nullptr)
+	{
+		PauseMenuWidget->CloseMenu();
 
+		SetInputMode(FInputModeGameOnly());
+		bShowMouseCursor = true;
+
+		SetPause(false);//ƒ|[ƒY‚ğ‰ğœ‚·‚é
+
+		UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/GameTitle"));
+	}
 }
 
 void ACPP_MainGamePlayerController::OnPauseMenuCloseButton()

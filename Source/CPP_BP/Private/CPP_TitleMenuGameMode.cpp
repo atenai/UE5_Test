@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Engine.h"
 #include "Kismet/GameplayStatics.h"
+#include "CPP_MyGameInstance.h"
 
 ACPP_TitleMenuGameMode::ACPP_TitleMenuGameMode() : Super()
 {
@@ -19,5 +20,10 @@ ACPP_TitleMenuGameMode::ACPP_TitleMenuGameMode() : Super()
 
 void ACPP_TitleMenuGameMode::StartGame(EMyGameDifficultType Type)
 {
-	UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/MainGame"));
+	UCPP_MyGameInstance* GameInstance = Cast<UCPP_MyGameInstance>(GetGameInstance());
+	if (GameInstance != nullptr)
+	{
+		GameInstance->DifficultType = Type;//ìÔà’ìxÇï€éùÇ∑ÇÈ
+		UGameplayStatics::OpenLevel(this, TEXT("/Game/Maps/MainGame"));
+	}
 }

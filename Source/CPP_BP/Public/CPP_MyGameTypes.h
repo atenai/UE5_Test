@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CPP_MyGameTypes.generated.h"
 
 UENUM(BlueprintType)
 enum class EMyGameDifficultType : uint8
