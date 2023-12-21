@@ -14,7 +14,7 @@
 
 ACPP_MainGamePlayerController::ACPP_MainGamePlayerController() : Super()
 {
-	static ConstructorHelpers::FClassFinder<UCPP_PauseMenuWidget> PauseMenuClass(TEXT("/Game/WBP_PauseMenu"));
+	static ConstructorHelpers::FClassFinder<UCPP_PauseMenuWidget> PauseMenuClass(TEXT("/Game/UI/WBP_PauseMenu"));
 	if (PauseMenuClass.Succeeded())
 	{
 		PauseMenuWidgetClass = PauseMenuClass.Class;

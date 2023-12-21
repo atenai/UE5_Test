@@ -8,7 +8,7 @@
 
 ACPP_EnemyProjectile::ACPP_EnemyProjectile() : Super()
 {
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> ProjectileMesh(TEXT("/Game/SM_EnemyProjectile.SM_EnemyProjectile"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> ProjectileMesh(TEXT("/Game/Meshes/SM_EnemyProjectile.SM_EnemyProjectile"));
 	if (StaticMeshComponent != nullptr && ProjectileMesh.Succeeded())
 	{
 		StaticMeshComponent->SetStaticMesh(ProjectileMesh.Object);

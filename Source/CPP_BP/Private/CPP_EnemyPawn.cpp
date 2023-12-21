@@ -11,7 +11,7 @@
 // Sets default values
 ACPP_EnemyPawn::ACPP_EnemyPawn() : Super()
 {
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> EnemyMeshObj(TEXT("/Game/SM_Enemy.SM_Enemy"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> EnemyMeshObj(TEXT("/Game/Meshes/SM_Enemy"));
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 
 	if (StaticMeshComponent != nullptr && EnemyMeshObj.Succeeded())

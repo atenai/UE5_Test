@@ -13,7 +13,7 @@
 
 ACPP_TitleMenuPlayerController::ACPP_TitleMenuPlayerController() : Super()
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> WidgetClass(TEXT("/Game/WBP_TitleMenu"));
+	static ConstructorHelpers::FClassFinder<UUserWidget> WidgetClass(TEXT("/Game/UI/WBP_TitleMenu"));
 	if (WidgetClass.Succeeded())
 	{
 		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Title2"));

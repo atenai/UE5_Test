@@ -24,7 +24,7 @@ ACPP_PlayerPawn::ACPP_PlayerPawn(const FObjectInitializer& ObjectInitializer) : 
 		StaticMeshComponent->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 	}
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> PlayerMeshObj(TEXT("/Game/SM_Player.SM_Player"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> PlayerMeshObj(TEXT("/Game/Meshes/SM_Player"));
 	//初期のStaticMeshにセット
 	if (ensure(PlayerMeshObj.Succeeded()))
 	{

@@ -9,8 +9,7 @@
 
 ACPP_PlayerProjectile::ACPP_PlayerProjectile() : Super()
 {
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> ProjectileMesh(TEXT("/Game/SM_PlayerProjectile.SM_PlayerProjectile"));
-
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> ProjectileMesh(TEXT("/Game/Meshes/SM_PlayerProjectile.SM_PlayerProjectile"));
 	if (StaticMeshComponent != nullptr && ProjectileMesh.Succeeded())
 	{
 		StaticMeshComponent->SetStaticMesh(ProjectileMesh.Object);
